@@ -39,3 +39,9 @@ jobs:
     - name: Stop containers
       if: always()
       run: docker-compose -f "docker-compose-v3.yml" down
+
+    - name: Archive screenshots
+        uses: actions/upload-artifact@v3
+        with:
+          name: screenshots
+          path: /tmp/
