@@ -25,19 +25,19 @@ public class App2Test {
     private WebDriver driver;
 
     @BeforeEach
-    public void setupDriver() throws MalformedURLException {
+    void setupDriver() throws MalformedURLException {
         driver = new RemoteWebDriver(new URL("http://localhost:4444"), new ChromeOptions());
     }
 
     @AfterEach
-    public void teardownDriver() throws IOException {
+    void teardownDriver() throws IOException {
         takeScreenShot();
         driver.quit();
     }
 
     @Test
     @DisplayName("Test Google Search Functionality")
-    public void testGoogleSearch() {
+    void testGoogleSearch() {
         // Navigate to the URL before we create our page objects
         driver.get("https://www.google.com");
 
@@ -48,6 +48,20 @@ public class App2Test {
 
         // Assert the new URL contains the word 'search' as a basic true/false scenario
         assert driver.getCurrentUrl().contains("search");
+    }
+
+    @Test
+    @DisplayName("Test Google I'm Feeling Lucky Functionality")
+    void testGoogleIFL() {
+        // Navigate to the URL before we create our page objects
+        driver.get("https://www.google.com");
+
+        // Create the new page object using our driver, internally this will call the PageFactory
+        GoogleHomePage googleHomePage = new GoogleHomePage(driver);
+        googleHomePage.clickImFeelingLuckyButton();
+
+        // Assert the new URL contains the word 'search' as a basic true/false scenario
+        assert driver.getCurrentUrl().contains("doodles");
     }
 
     private void takeScreenShot() throws IOException {
