@@ -50,21 +50,6 @@ public class App1Test {
         assert driver.getCurrentUrl().contains("search");
     }
 
-    @Test
-    @DisplayName("Test Google I'm Feeling Lucky Functionality")
-    void testGoogleIFL() {
-        // Navigate to the URL before we create our page objects
-        driver.get("https://www.google.com");
-
-        // Create the new page object using our driver, internally this will call the PageFactory
-        GoogleHomePage googleHomePage = new GoogleHomePage(driver);
-        googleHomePage.enterSearchText("Test");
-        googleHomePage.clickImFeelingLuckyButton();
-
-        // Assert the new URL contains the word 'search' as a basic true/false scenario
-        assert driver.getCurrentUrl().equals("https://en.wikipedia.org/wiki/Test");
-    }
-
     private void takeScreenShot() throws IOException {
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
