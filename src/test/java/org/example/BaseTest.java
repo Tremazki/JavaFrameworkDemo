@@ -4,12 +4,12 @@ import org.example.utilities.ScreenshotUtilities;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 
 public class BaseTest {
 
@@ -17,10 +17,7 @@ public class BaseTest {
 
     @BeforeEach
     void setupDriver() throws MalformedURLException {
-//        driver = new RemoteWebDriver(new URL("http://localhost:4444"), new FirefoxOptions());
-        EdgeOptions options = new EdgeOptions();
-        options.addExtensions(new File("./bin/1.49.2_0.crx"));
-        driver = new EdgeDriver(options);
+        driver = new RemoteWebDriver(new URL("http://localhost:4444"), new FirefoxOptions());
     }
 
     @AfterEach
