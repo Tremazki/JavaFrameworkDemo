@@ -25,7 +25,7 @@ public abstract class AbstractPage {
     protected WebDriver     driver;
     protected WebDriverWait wait;
 
-    protected AbstractPage(WebDriver driver) {
+    public AbstractPage(WebDriver driver) {
         this.driver = driver;
         this.wait   = new WebDriverWait(driver, Duration.ofMinutes(1));
         PageFactory.initElements(driver, this);

@@ -32,8 +32,10 @@ public class GoogleHomePage extends AbstractPage {
     }
 
     /* Convenience function for entering search text */
-    public void enterSearchText(String text) {
+    public GoogleHomePage enterSearchText(String text) {
+        wait.until(ExpectedConditions.visibilityOf(searchBar));
         searchBar.sendKeys(text);
+        return this;
     }
 
     /* Convenience function for clicking the search button */
