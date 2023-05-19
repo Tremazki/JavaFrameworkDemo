@@ -1,0 +1,53 @@
+package org.example.pages.automationexercise;
+
+import org.example.pages.Page;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.LoadableComponent;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class AutomationExerciseSignUpPage extends Page<AutomationExerciseSignUpPage> {
+
+    // Login
+    static final String usernameLocator = ".//input[@data-qa=\"login-email\"]";
+    static final String passwordLocator = ".//input[@data-qa=\"login-password\"]";
+    static final String loginBtnLocator = ".//button[@data-qa=\"login-button\"]";
+
+    // Signup
+    static final String nameLocator      = ".//input[@data-qa=\"signup-name\"]";
+    static final String emailLocator     = ".//input[@data-qa=\"signup-email\"]";
+    static final String signupBtnLocator = ".//button[@data-qa=\"signup-button\"]";
+
+    @FindBy(how = How.XPATH, using = usernameLocator)
+    WebElement usernameField;
+
+    @FindBy(how = How.XPATH, using = passwordLocator)
+    WebElement passwordField;
+
+    @FindBy(how = How.XPATH, using = loginBtnLocator)
+    WebElement loginButton;
+
+    public AutomationExerciseSignUpPage(WebDriver driver) {
+        super(driver);
+    }
+
+    @Override
+    protected void load() {
+        driver.get("https://www.automationexercise.com/login");
+    }
+
+    @Override
+    protected void isLoaded() {
+        assertTrue(driver.getTitle().contains("Signup / Login"));
+    }
+
+    public void login(String username, String password) {
+        usernameField.sendKeys(username);
+        passwordField.sendKeys(password);
+        loginButton.click();
+    }
+}

@@ -1,1 +1,1 @@
-org.example.junit.extensions.TestExtension
+#org.example.junit.extensions.RemoteDriverParameterResolver

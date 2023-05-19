@@ -21,6 +21,11 @@ public class ScreenshotUtilities {
      * @throws IOException IOException if the file can not be copied successfully
      */
     public static void takeScreenShot(WebDriver driver) throws IOException {
+        final Path path = Paths.get("./tmp");
+        if(Files.notExists(path)) {
+            Files.createDirectory(path);
+        }
+
         File              screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         DateTimeFormatter formatter  = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
         String            savePath   = String.format("./tmp/%s.png", LocalDateTime.now().format(formatter));
