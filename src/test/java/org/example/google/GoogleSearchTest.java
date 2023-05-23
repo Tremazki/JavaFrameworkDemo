@@ -1,17 +1,20 @@
 package org.example.google;
 
-import org.example.SeleniumTest;
+import org.example.junit.BaseSeleniumTest;
 import org.example.pages.google.GoogleHomePage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Application Tests - Firefox")
-public class GoogleSearchTest extends SeleniumTest {
+public class GoogleSearchTest extends BaseSeleniumTest {
 
     @Test
     @DisplayName("Test Google Search Functionality")
     void testGoogleSearch() {
-        // Create the new page object using our driver, internally this will call the PageFactory
+        /*
+         * Create the new page object using our driver, internally this will call the PageFactory and resolve the
+         * WebElements within the class
+         */
         GoogleHomePage home = new GoogleHomePage(driver).get();
 
         home.enterSearchText("Test")

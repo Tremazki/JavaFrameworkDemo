@@ -1,17 +1,13 @@
 package org.example.automationexercise;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.example.SeleniumTest;
+import org.example.junit.BaseSeleniumTest;
 import org.example.pages.automationexercise.AutomationExerciseCheckoutPage;
 import org.example.pages.automationexercise.AutomationExerciseHomePage;
 import org.example.pages.automationexercise.AutomationExerciseSecuredPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class AutomationExerciseTest extends SeleniumTest {
-
-    public Logger log = LogManager.getLogger(AutomationExerciseTest.class);
+public class AutomationExerciseTest extends BaseSeleniumTest {
 
     @Test
     @DisplayName("Login to Automation Exercise")

@@ -28,10 +28,6 @@ public class AutomationExerciseSecuredPage extends Page<AutomationExerciseSecure
 
     @Override
     protected void load() {
-//        parent.get();
-//        String originalUrl = driver.getCurrentUrl();
-
-        // Check if logged in already
         new AutomationExerciseSignUpPage(driver).get().login(username, password);
         parent.get();
     }
