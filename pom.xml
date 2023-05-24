@@ -16,6 +16,33 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+  <profiles>
+    <profile>
+      <id>junit-selenium</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <test-classes>**/org.example.runner.JUnitTestRunner.java</test-classes>
+        <configurationParameters>
+          junit.jupiter.execution.parallel.enabled               = true
+          junit.jupiter.execution.parallel.mode.default          = same_thread
+          junit.jupiter.execution.parallel.mode.classes.default  = concurrent
+          junit.jupiter.extensions.autodetection.enabled         = true
+        </configurationParameters>
+      </properties>
+    </profile>
+    <profile>
+      <id>junit-cucumber</id>
+      <properties>
+        <test-classes>**/org.example.runner.CucumberTestRunner.java</test-classes>
+        <configurationParameters>
+          cucumber.junit-platform.naming-strategy = long
+        </configurationParameters>
+      </properties>
+    </profile>
+  </profiles>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -89,32 +116,6 @@
     </dependency>
   </dependencies>
 
-  <profiles>
-    <profile>
-      <id>junit-selenium</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <properties>
-        <test-classes>**/org.example.runner.JUnitTestRunner.java</test-classes>
-        <configurationParameters>
-          junit.jupiter.execution.parallel.enabled               = true
-          junit.jupiter.execution.parallel.mode.default          = same_thread
-          junit.jupiter.execution.parallel.mode.classes.default  = concurrent
-          junit.jupiter.extensions.autodetection.enabled         = true
-        </configurationParameters>
-      </properties>
-    </profile>
-    <profile>
-      <id>junit-cucumber</id>
-      <properties>
-        <test-classes>**/org.example.runner.CucumberTestRunner.java</test-classes>
-        <configurationParameters>
-          cucumber.junit-platform.naming-strategy = long
-        </configurationParameters>
-      </properties>
-    </profile>
-  </profiles>
 
   <build>
     <plugins>
