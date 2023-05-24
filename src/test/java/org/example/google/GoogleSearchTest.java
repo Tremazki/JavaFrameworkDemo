@@ -1,12 +1,12 @@
 package org.example.google;
 
-import org.example.junit.BaseSeleniumTest;
+import org.example.junit.SeleniumTest;
 import org.example.pages.google.GoogleHomePage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Application Tests - Firefox")
-public class GoogleSearchTest extends BaseSeleniumTest {
+public class GoogleSearchTest extends SeleniumTest {
 
     @Test
     @DisplayName("Test Google Search Functionality")

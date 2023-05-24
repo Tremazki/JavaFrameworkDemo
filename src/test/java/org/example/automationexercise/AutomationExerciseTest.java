@@ -1,13 +1,13 @@
 package org.example.automationexercise;
 
-import org.example.junit.BaseSeleniumTest;
+import org.example.junit.SeleniumTest;
 import org.example.pages.automationexercise.AutomationExerciseCheckoutPage;
 import org.example.pages.automationexercise.AutomationExerciseHomePage;
 import org.example.pages.automationexercise.AutomationExerciseSecuredPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class AutomationExerciseTest extends BaseSeleniumTest {
+public class AutomationExerciseTest extends SeleniumTest {
 
     @Test
     @DisplayName("Login to Automation Exercise")

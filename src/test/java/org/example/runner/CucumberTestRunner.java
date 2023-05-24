@@ -1,4 +1,4 @@
-package org.example.suite;
+package org.example.runner;
 
 import org.junit.platform.suite.api.*;
 
@@ -8,6 +8,6 @@ import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 @IncludeEngines("cucumber")
 @SelectClasspathResource("features")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "org.example.stepdefinitions")
-public class RunCucumberTestSuite {
+public class CucumberTestRunner {
     // Intentionally empty, the above annotations will tell JUnit what to look for
 }

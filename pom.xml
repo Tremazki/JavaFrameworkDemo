@@ -89,6 +89,33 @@
     </dependency>
   </dependencies>
 
+  <profiles>
+    <profile>
+      <id>junit-selenium</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <test-classes>**/org.example.runner.JUnitTestRunner.java</test-classes>
+        <configurationParameters>
+          junit.jupiter.execution.parallel.enabled               = true
+          junit.jupiter.execution.parallel.mode.default          = same_thread
+          junit.jupiter.execution.parallel.mode.classes.default  = concurrent
+          junit.jupiter.extensions.autodetection.enabled         = true
+        </configurationParameters>
+      </properties>
+    </profile>
+    <profile>
+      <id>junit-cucumber</id>
+      <properties>
+        <test-classes>**/org.example.runner.CucumberTestRunner.java</test-classes>
+        <configurationParameters>
+          cucumber.junit-platform.naming-strategy = long
+        </configurationParameters>
+      </properties>
+    </profile>
+  </profiles>
+
   <build>
     <plugins>
       <plugin>
@@ -100,51 +127,18 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0</version>
-
-        <!-- Specify runtime executions for surefire using e.g: "mvn surefire:test@id" where id is defined below -->
-        <executions>
-
-          <!-- run using "mvn surefire:test@junit-test" -->
-          <execution>
-            <id>junit-test</id>
-            <configuration>
-              <includes>
-                <include>**/org.example.suite.RunJUnitTestSuite.java</include>
-              </includes>
-              <systemProperties>
-                <browser>edge</browser>
-              </systemProperties>
-              <properties>
-                <configurationParameters>
-                  junit.jupiter.execution.parallel.enabled               = true
-                  junit.jupiter.execution.parallel.mode.default          = same_thread
-                  junit.jupiter.execution.parallel.mode.classes.default  = concurrent
-                  junit.jupiter.extensions.autodetection.enabled         = true
-                </configurationParameters>
-              </properties>
-            </configuration>
-          </execution>
-
-          <!-- run using "mvn surefire:test@cucumber-test" -->
-          <!-- supply your own configuration via Java system properties in the mvn command
-               i.e. -Dcucumber.features=src/test/resources/features -Dcucumber.glue=path.to.glue.package -->
-          <!-- a list of these properties for Cucumber can be found here:
-               https://github.com/cucumber/cucumber-jvm/tree/main/cucumber-junit-platform-engine#configuration-options -->
-          <execution>
-            <id>cucumber-test</id>
-            <configuration>
-              <includes>
-                <include>**/org.example.suite.RunCucumberTestSuite.java</include>
-              </includes>
-              <properties>
-                <configurationParameters>
-                  cucumber.junit-platform.naming-strategy = long
-                </configurationParameters>
-              </properties>
-            </configuration>
-          </execution>
-
-        </executions>
+        <configuration>
+          <includes>
+            <!--note: this value is supplied by the mvn profile defined above -->
+            <!--suppress UnresolvedMavenProperty -->
+            <include>${test-classes}</include>
+          </includes>
+          <properties>
+            <!--note: this value is supplied by the mvn profile defined above -->
+            <!--suppress UnresolvedMavenProperty -->
+            <configurationParameters>${configurationParameters}</configurationParameters>
+          </properties>
+        </configuration>
       </plugin>
     </plugins>
   </build>
