@@ -28,6 +28,10 @@ public class ExtentReporter implements Reporter<ExtentTest> {
         extentTest.createNode(_step).fail(_details);
     }
 
+    public void embedImage(String _path) {
+        extentTest.addScreenCaptureFromPath(_path);
+    }
+
     public void write() {
         extent.flush();
     }

@@ -11,9 +11,10 @@ public class ExtentReporterSupplier implements Supplier<ExtentReporter> {
 
     public ExtentReporter supply() {
         if(reporter == null) {
-            String timeStamp  = new SimpleDateFormat("MMddyyyy-HHmmss").format(Calendar.getInstance().getTime());
-            String reportName = "Report_" + timeStamp + ".html";
-            reporter = new ExtentReporter(reportName);
+            String timeStamp      = new SimpleDateFormat("MMddyyyy-HHmmss").format(Calendar.getInstance().getTime());
+            String reportName     = "Report_" + timeStamp + ".html";
+            String reportLocation = "./reports";
+            reporter = new ExtentReporter(reportLocation + "/" + reportName);
         }
         return reporter;
     }

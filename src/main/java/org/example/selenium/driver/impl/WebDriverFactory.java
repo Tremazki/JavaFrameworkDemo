@@ -11,19 +11,19 @@ import java.net.URISyntaxException;
 
 /**
  * We intentionally don't want to implement the IFactory here because we want our exceptions in the create() method
- * to bubble up and stop execution.
+ * to bubble up and stop execution since the drivers are the crux of all our testing.
  */
 public class WebDriverFactory {
 
-    protected boolean                          remote;
-    protected String                           grid;
-    protected IFactory<? extends Capabilities> capabilitiesFactory;
+    protected boolean                                  remote;
+    protected String                                   grid;
+    protected IFactory<? extends Capabilities, String> capabilitiesFactory;
 
     public WebDriverFactory() {
         this(new DefaultCapabilitiesFactory());
     }
 
-    public WebDriverFactory(IFactory<? extends Capabilities> capabilitiesFactory) {
+    public WebDriverFactory(IFactory<? extends Capabilities, String> capabilitiesFactory) {
        this.remote              = Boolean.parseBoolean(System.getProperty("remote", "false"));
        this.grid                = System.getProperty("grid", "http://localhost:4444");
        this.capabilitiesFactory = capabilitiesFactory;

@@ -14,19 +14,23 @@ import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 
-public class LocalDriverFactory implements IFactory<WebDriver> {
+public class LocalDriverFactory implements IFactory<WebDriver, String> {
 
     private final String       browser;
     private final Capabilities capabilities;
 
-    LocalDriverFactory(IFactory<? extends Capabilities> capabilitiesFactory) {
+    LocalDriverFactory(IFactory<? extends Capabilities, String> capabilitiesFactory) {
         assert System.getProperty("browser") != null : "Java system property: 'browser' was null - unable to create a local driver instance";
         this.browser      = System.getProperty("browser");
         this.capabilities = capabilitiesFactory.create();
     }
 
     public WebDriver create() {
-        switch(browser.toLowerCase()) {
+        return create(browser.toLowerCase());
+    }
+
+    public WebDriver create(String _condition) {
+        switch(_condition) {
             case "firefox":
                 return new FirefoxDriver(new FirefoxOptions(capabilities));
             case "safari":
