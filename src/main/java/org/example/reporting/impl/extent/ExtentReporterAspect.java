@@ -1,4 +1,4 @@
-package org.example.reporting.impl;
+package org.example.reporting.impl.extent;
 
 import com.aventstack.extentreports.ExtentTest;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -6,6 +6,7 @@ import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.example.reporting.Reporter;
 import org.example.reporting.TestStep;
+import org.example.reporting.impl.ReporterSupplierFactory;
 
 import java.lang.reflect.Method;
 
@@ -21,9 +22,6 @@ public class ExtentReporterAspect {
 
     @Pointcut("execution(public * *(..))")
     public void publicMethod() {}
-
-    @Pointcut("!execution(public * *(..))")
-    public void test() {}
 
     @Pointcut("@annotation(org.example.reporting.TestStep)")
     public void testStepAnnotation() {}
