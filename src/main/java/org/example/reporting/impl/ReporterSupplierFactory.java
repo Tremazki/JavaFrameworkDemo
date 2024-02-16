@@ -15,20 +15,20 @@ import java.util.Map;
  * <br>
  * By default, the ExtentReportSupplier is returned.
  */
-public class ReporterSupplierFactory implements IFactory<ISupplier<? extends IReporter<?>>, Class<?>> {
+public class ReporterSupplierFactory implements IFactory<ISupplier<? extends IReporter>, Class<?>> {
 
-    private final Map<Class<?>, ISupplier<? extends IReporter<?>>> registry = new HashMap<>();
+    private final Map<Class<?>, ISupplier<? extends IReporter>> registry = new HashMap<>();
 
     public ReporterSupplierFactory(){
         registry.put(ExtentReporter.class, new ExtentReporterSupplier());
     }
 
-    public ISupplier<? extends IReporter<?>> create() {
+    public ISupplier<? extends IReporter> create() {
         return registry.get(ExtentReporter.class);
     }
 
     @Override
-    public ISupplier<? extends IReporter<?>> create(Class<?> _condition) {
+    public ISupplier<? extends IReporter> create(Class<?> _condition) {
         return registry.get(_condition);
     }
 

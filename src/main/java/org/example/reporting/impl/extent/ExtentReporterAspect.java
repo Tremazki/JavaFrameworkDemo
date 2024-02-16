@@ -12,8 +12,8 @@ import java.lang.reflect.Method;
 @Aspect
 public class ExtentReporterAspect {
 
-    private final IReporter<?> reporter;
-    private String                     testStep;
+    private final IReporter reporter;
+    private String          testStep;
 
     ExtentReporterAspect() {
        reporter = new ReporterSupplierFactory().create().supply();

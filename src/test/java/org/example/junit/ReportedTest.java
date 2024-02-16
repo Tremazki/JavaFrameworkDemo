@@ -8,7 +8,7 @@ import org.junit.jupiter.api.TestInfo;
 
 public class ReportedTest {
 
-    private final IReporter<?> reporter;
+    private final IReporter reporter;
 
     ReportedTest() {
         reporter = new ReporterSupplierFactory().create().supply();
