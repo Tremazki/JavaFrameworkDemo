@@ -129,6 +129,20 @@
       <artifactId>extentreports</artifactId>
       <version>5.1.1</version>
     </dependency>
+
+    <!-- AspectJ -->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.9.2</version> <!-- Java 11 only supports up to version 1.9.2 -->
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>1.9.2</version> <!-- Java 11 only supports up to version 1.9.2 -->
+      <scope>runtime</scope>
+    </dependency>
   </dependencies>
 
 
@@ -143,14 +157,13 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0</version>
+        <!-- Note: Suppressed values below are supplied by the mvn profile defined above -->
         <configuration>
           <includes>
-            <!--note: this value is supplied by the mvn profile defined above -->
             <!--suppress UnresolvedMavenProperty -->
             <include>${test-classes}</include>
           </includes>
           <properties>
-            <!--note: this value is supplied by the mvn profile defined above -->
             <!--suppress UnresolvedMavenProperty -->
             <configurationParameters>${configurationParameters}</configurationParameters>
           </properties>
