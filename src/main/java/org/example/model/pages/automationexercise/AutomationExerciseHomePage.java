@@ -1,6 +1,7 @@
-package org.example.pages.automationexercise;
+package org.example.model.pages.automationexercise;
 
-import org.example.pages.Page;
+import org.example.model.pages.TestStep;
+import org.example.model.pages.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class AutomationExerciseHomePage extends Page<AutomationExerciseHomePage> {
 
@@ -30,8 +32,15 @@ public class AutomationExerciseHomePage extends Page<AutomationExerciseHomePage>
         assertTrue(driver.getTitle().contains("Automation Exercise"));
     }
 
+    @TestStep("The user clicks on login")
     public void clickLogin(){
         wait.until(ExpectedConditions.visibilityOf(loginLink));
         loginLink.click();
     }
+
+    @TestStep("The user asserts they're on the signup page")
+    public void assertTitle() throws Throwable{
+        throw new Throwable("Hello");
+    }
+
 }

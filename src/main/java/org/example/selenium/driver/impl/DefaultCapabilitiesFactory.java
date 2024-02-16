@@ -1,6 +1,6 @@
-package org.example.utilities.driver.impl;
+package org.example.selenium.driver.impl;
 
-import org.example.utilities.driver.IFactory;
+import org.example.selenium.driver.IFactory;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;

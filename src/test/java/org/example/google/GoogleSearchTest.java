@@ -1,7 +1,7 @@
 package org.example.google;
 
 import org.example.junit.SeleniumTest;
-import org.example.pages.google.GoogleHomePage;
+import org.example.model.pages.google.GoogleHomePage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
