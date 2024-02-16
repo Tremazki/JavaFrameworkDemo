@@ -16,7 +16,7 @@ public class ExtentReporterAspect {
     private String                     testStep;
 
     ExtentReporterAspect() {
-       reporter = ReporterSupplierFactory.getSupplier().supply();
+       reporter = new ReporterSupplierFactory().create().supply();
     }
 
     @Pointcut("execution(public * *(..))")
