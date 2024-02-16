@@ -1,8 +1,10 @@
 package org.example.reporting.impl;
 
+import com.aventstack.extentreports.ExtentTest;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.example.reporting.Reporter;
 import org.example.reporting.TestStep;
 
 import java.lang.reflect.Method;
@@ -10,11 +12,11 @@ import java.lang.reflect.Method;
 @Aspect
 public class ExtentReporterAspect {
 
-    private final ExtentReporter reporter;
-    private String               testStep;
+    private final Reporter<?>          reporter;
+    private String                     testStep;
 
     ExtentReporterAspect() {
-       reporter = new ExtentReportSupplier().supply();
+       reporter = ReporterSupplierFactory.getSupplier().supply();
     }
 
     @Pointcut("execution(public * *(..))")
