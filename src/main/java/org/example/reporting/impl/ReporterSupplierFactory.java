@@ -12,6 +12,8 @@ import java.util.Map;
 /**
  * In the event that we have to utilize a different reporting engine for the client, we can
  * extend this class to return a particular supplier determined by the Class supplied to the factory method.
+ *
+ * By default, the ExtentReportSupplier is returned.
  */
 public class ReporterSupplierFactory implements IFactory<Supplier<? extends Reporter<?>>, Class<?>> {
 

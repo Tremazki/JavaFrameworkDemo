@@ -1,6 +1,7 @@
 package org.example.model.pages.automationexercise;
 
 import org.example.model.pages.Page;
+import org.example.reporting.TestStep;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -40,12 +41,18 @@ public class AutomationExerciseSignUpPage extends Page<AutomationExerciseSignUpP
 
     @Override
     protected void isLoaded() {
-        assertTrue(driver.getTitle().contains("Signup / Login"));
+        assert driver.getTitle().contains("Signup / Login");
     }
 
-    public void login(String username, String password) {
+    @TestStep("The user enters their login information and submits the login form")
+    public void submitLoginForm(String username, String password) {
         usernameField.sendKeys(username);
         passwordField.sendKeys(password);
         loginButton.click();
+    }
+
+    @TestStep("The user begins the registration process")
+    public void startRegistration() {
+
     }
 }

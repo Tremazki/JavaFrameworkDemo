@@ -9,4 +9,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface TestStep {
     String value();
+
+    String optional() default "";
 }

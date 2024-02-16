@@ -18,3 +18,70 @@ e.g.
 ```
 test -Pjunit-selenium -Dremote=false -Dbrowser=edge
 ```
+
+## Limitations
+
+In order for the reports to accurately log the steps and pass/fail status, methods denoted by @TestStep must not be 
+called within other methods. Please see the example below for how we can organize our methods to avoid this.
+
+### Incorrect:
+```Java
+public class ExamplePage extends Page<ExamplePage> {
+
+    public ExamplePage(WebDriver driver) {
+        super(driver);
+    }
+
+    ...
+
+    @TestStep("The user performs an action")
+    public void performAction1() {
+        performAction2();
+        performAction3();
+    }
+
+    @TestStep("The user performs another action")
+    public void performAction2() {
+        ...
+    }
+
+    @TestStep("The user performs a third action")
+    public void performAction3() {
+        ...
+    }
+}
+```
+
+Doing this will cause each call, including the calls in performAction1() to create a new entry in the report for that test step.
+
+
+### Correct:
+```Java
+public class ExamplePage extends Page<ExamplePage> {
+
+    public ExamplePage(WebDriver driver) {
+        super(driver);
+    }
+
+    ...
+
+    // This ensures that the method calls within performAction1 aren't creating additional report calls
+    // This does mean the code will be a little less flexible however it just requires additional planning.
+    @TestStep("The user enters information into the form and submits")
+    public void performAction1() {
+        performAction2();
+        performAction3();
+    }
+
+    public void performAction2() {
+        ...
+    }
+
+    public void performAction3() {
+        ...
+    }
+}
+```
+
+
+I'm exploring possible ways of excluding these calls from AspectJ weaving however I have not found a way to do this yet.

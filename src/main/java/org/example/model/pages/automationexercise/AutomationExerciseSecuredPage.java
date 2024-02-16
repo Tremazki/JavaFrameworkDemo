@@ -24,7 +24,7 @@ public class AutomationExerciseSecuredPage extends Page<AutomationExerciseSecure
 
     @Override
     protected void load() {
-        new AutomationExerciseSignUpPage(driver).get().login(username, password);
+        new AutomationExerciseSignUpPage(driver).get().submitLoginForm(username, password);
         parent.get();
     }
 

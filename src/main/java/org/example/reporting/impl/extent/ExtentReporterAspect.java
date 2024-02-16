@@ -1,6 +1,5 @@
 package org.example.reporting.impl.extent;
 
-import com.aventstack.extentreports.ExtentTest;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;

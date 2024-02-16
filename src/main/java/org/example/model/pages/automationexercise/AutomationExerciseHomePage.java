@@ -32,15 +32,9 @@ public class AutomationExerciseHomePage extends Page<AutomationExerciseHomePage>
         assert driver.getTitle().contains("Automation Exercise") : "Failed to assert the user is on the home page";
     }
 
-    @TestStep("The user clicks on login")
+    @TestStep("The user clicks on the login link on the home page")
     public void clickLogin(){
         wait.until(ExpectedConditions.visibilityOf(loginLink));
         loginLink.click();
     }
-
-    @TestStep("The user asserts they're on the signup page")
-    public void assertTitle() {
-        assert driver.getTitle().contains("Sign up") : "Failed to assert the user is on the sign-up page";
-    }
-
 }
