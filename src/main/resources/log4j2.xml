@@ -2,15 +2,21 @@
 <Configuration status="WARN">
     <Properties>
         <Property name="LOG_PATTERN">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+        <Property name="LOG_LOCATION">logs</Property>
+        <Property name="LOG_FILE_NAME">run.log</Property>
     </Properties>
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
+        <File name="file" fileName="${LOG_LOCATION}/${LOG_FILE_NAME}" append="true" >
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </File>
     </Appenders>
     <Loggers>
         <Root level="info">
             <AppenderRef ref="console"/>
+            <AppenderRef ref="file"/>
         </Root>
     </Loggers>
 </Configuration>

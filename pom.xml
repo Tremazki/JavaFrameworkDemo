@@ -25,7 +25,7 @@
       <properties>
         <test-classes>**/org.example.runner.JUnitTestRunner.java</test-classes>
         <configurationParameters>
-          junit.jupiter.execution.parallel.enabled               = true
+          junit.jupiter.execution.parallel.enabled               = false
           junit.jupiter.execution.parallel.mode.default          = same_thread
           junit.jupiter.execution.parallel.mode.classes.default  = concurrent
           junit.jupiter.extensions.autodetection.enabled         = true
@@ -77,29 +77,7 @@
   </dependencyManagement>
 
   <dependencies>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-slf4j2-impl</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-api</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-java</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-junit-platform-engine</artifactId>
-      <scope>test</scope>
-    </dependency>
+    <!-- JUnit Dependencies -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -112,6 +90,36 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Logging Dependencies -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j2-impl</artifactId>
+    </dependency>
+
+    <!-- Selenium Dependencies -->
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <exclusions>
+        <!-- Exclude Selenium's slf4j import since we include it above for the Log4j2 slf4j implementation -->
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- Cucumber Dependencies -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-junit-platform-engine</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

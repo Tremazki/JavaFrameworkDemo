@@ -9,6 +9,10 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+/**
+ * We intentionally don't want to implement the IFactory here because we want our exceptions in the create() method
+ * to bubble up and stop execution.
+ */
 public class WebDriverFactory {
 
     protected boolean                          remote;
