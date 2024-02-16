@@ -1,7 +1,7 @@
 package org.example.reporting.impl;
 
-import org.example.reporting.Reporter;
-import org.example.reporting.Supplier;
+import org.example.reporting.IReporter;
+import org.example.reporting.ISupplier;
 import org.example.reporting.impl.extent.ExtentReporter;
 import org.example.reporting.impl.extent.ExtentReporterSupplier;
 import org.example.selenium.driver.IFactory;
@@ -15,20 +15,20 @@ import java.util.Map;
  * <br>
  * By default, the ExtentReportSupplier is returned.
  */
-public class ReporterSupplierFactory implements IFactory<Supplier<? extends Reporter<?>>, Class<?>> {
+public class ReporterSupplierFactory implements IFactory<ISupplier<? extends IReporter<?>>, Class<?>> {
 
-    private final Map<Class<?>, Supplier<? extends Reporter<?>>> registry = new HashMap<>();
+    private final Map<Class<?>, ISupplier<? extends IReporter<?>>> registry = new HashMap<>();
 
     public ReporterSupplierFactory(){
         registry.put(ExtentReporter.class, new ExtentReporterSupplier());
     }
 
-    public Supplier<? extends Reporter<?>> create() {
+    public ISupplier<? extends IReporter<?>> create() {
         return registry.get(ExtentReporter.class);
     }
 
     @Override
-    public Supplier<? extends Reporter<?>> create(Class<?> _condition) {
+    public ISupplier<? extends IReporter<?>> create(Class<?> _condition) {
         return registry.get(_condition);
     }
 

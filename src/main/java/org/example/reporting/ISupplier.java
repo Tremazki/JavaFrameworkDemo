@@ -1,5 +1,5 @@
 package org.example.reporting;
 
-public interface Supplier<T> {
+public interface ISupplier<T> {
     T supply();
 }

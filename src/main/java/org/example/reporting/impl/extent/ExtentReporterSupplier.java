@@ -1,11 +1,11 @@
 package org.example.reporting.impl.extent;
 
-import org.example.reporting.Supplier;
+import org.example.reporting.ISupplier;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class ExtentReporterSupplier implements Supplier<ExtentReporter> {
+public class ExtentReporterSupplier implements ISupplier<ExtentReporter> {
 
     private static ExtentReporter reporter;
 

@@ -3,9 +3,9 @@ package org.example.reporting.impl.extent;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import org.example.reporting.Reporter;
+import org.example.reporting.IReporter;
 
-public class ExtentReporter implements Reporter<ExtentTest> {
+public class ExtentReporter implements IReporter {
 
     private final ExtentReports extent;
 

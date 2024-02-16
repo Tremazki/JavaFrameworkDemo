@@ -1,10 +1,9 @@
 package org.example.reporting.impl.extent;
 
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.example.reporting.Reporter;
+import org.example.reporting.IReporter;
 import org.example.reporting.TestStep;
 import org.example.reporting.impl.ReporterSupplierFactory;
 
@@ -13,7 +12,7 @@ import java.lang.reflect.Method;
 @Aspect
 public class ExtentReporterAspect {
 
-    private final Reporter<?>          reporter;
+    private final IReporter<?> reporter;
     private String                     testStep;
 
     ExtentReporterAspect() {

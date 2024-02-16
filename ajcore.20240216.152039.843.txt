@@ -822,9 +822,9 @@ info woven class org.example.reporting.impl.extent.ExtentReporterSupplier (from 
 info compiling C:\Git\JavaFrameworkDemo\src\main\java\org\example\reporting\impl\ReporterSupplierFactory.java
 info woven class org.example.reporting.impl.ReporterSupplierFactory (from C:\Git\JavaFrameworkDemo\src\main\java\org\example\reporting\impl\ReporterSupplierFactory.java)
 info compiling C:\Git\JavaFrameworkDemo\src\main\java\org\example\reporting\Reporter.java
-info woven class org.example.reporting.Reporter (from C:\Git\JavaFrameworkDemo\src\main\java\org\example\reporting\Reporter.java)
+info woven class org.example.reporting.IReporter (from C:\Git\JavaFrameworkDemo\src\main\java\org\example\reporting\Reporter.java)
 info compiling C:\Git\JavaFrameworkDemo\src\main\java\org\example\reporting\Supplier.java
-info woven class org.example.reporting.Supplier (from C:\Git\JavaFrameworkDemo\src\main\java\org\example\reporting\Supplier.java)
+info woven class org.example.reporting.ISupplier (from C:\Git\JavaFrameworkDemo\src\main\java\org\example\reporting\Supplier.java)
 info compiling C:\Git\JavaFrameworkDemo\src\main\java\org\example\reporting\TestStep.java
 info woven class org.example.reporting.TestStep (from C:\Git\JavaFrameworkDemo\src\main\java\org\example\reporting\TestStep.java)
 info compiling C:\Git\JavaFrameworkDemo\src\main\java\org\example\selenium\driver\IFactory.java
