@@ -1,4 +1,4 @@
-package org.example.model.pages;
+package org.example.reporting;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

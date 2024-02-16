@@ -1,6 +1,6 @@
 package org.example.model.pages.automationexercise;
 
-import org.example.model.pages.TestStep;
+import org.example.reporting.TestStep;
 import org.example.model.pages.Page;
 import org.openqa.selenium.WebDriver;
 
@@ -17,11 +17,11 @@ public class AutomationExerciseCheckoutPage extends Page<AutomationExerciseCheck
 
     @Override
     protected void isLoaded() {
-        assertTitle();
+        assert driver.getTitle().contains("Checkout") : "Failed to assert the user is on the checkout page";
     }
 
     @TestStep("The user asserts they're on the checkout page")
     public void assertTitle() {
-        assert driver.getTitle().contains("Checkout") : "Failed to assert the user is on the checkout page";
+        isLoaded();
     }
 }
