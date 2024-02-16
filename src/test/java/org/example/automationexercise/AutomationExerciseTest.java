@@ -31,6 +31,7 @@ public class AutomationExerciseTest extends SeleniumTest {
                 "tyler@qac.com",
                 "password").get();
 
+        getTestReport().createNode("User is on the checkout page").pass("Passing") ;
         assert driver.getTitle().contains("Checkout");
     }
 
