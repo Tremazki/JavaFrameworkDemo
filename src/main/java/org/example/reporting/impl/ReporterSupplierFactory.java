@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * In the event that we have to utilize a different reporting engine for the client, we can
  * extend this class to return a particular supplier determined by the Class supplied to the factory method.
- *
+ * <br>
  * By default, the ExtentReportSupplier is returned.
  */
 public class ReporterSupplierFactory implements IFactory<Supplier<? extends Reporter<?>>, Class<?>> {
@@ -23,9 +23,8 @@ public class ReporterSupplierFactory implements IFactory<Supplier<? extends Repo
         registry.put(ExtentReporter.class, new ExtentReporterSupplier());
     }
 
-    // Default to the extent reporter
     public Supplier<? extends Reporter<?>> create() {
-        return create(ExtentReporter.class);
+        return registry.get(ExtentReporter.class);
     }
 
     @Override

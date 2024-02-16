@@ -1,17 +1,17 @@
 package org.example.junit;
 
-import org.example.reporting.impl.extent.ExtentReporterSupplier;
-import org.example.reporting.impl.extent.ExtentReporter;
+import org.example.reporting.Reporter;
+import org.example.reporting.impl.ReporterSupplierFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
 
-public class ExtentReportTest {
+public class ReportedTest {
 
-    private final ExtentReporter reporter;
+    private final Reporter<?> reporter;
 
-    ExtentReportTest() {
-        reporter = new ExtentReporterSupplier().supply();
+    ReportedTest() {
+        reporter = new ReporterSupplierFactory().create().supply();
     }
 
     @BeforeEach

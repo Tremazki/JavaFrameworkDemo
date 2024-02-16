@@ -46,13 +46,26 @@ public class AutomationExerciseSignUpPage extends Page<AutomationExerciseSignUpP
 
     @TestStep("The user enters their login information and submits the login form")
     public void submitLoginForm(String username, String password) {
+        enterUsername(username);
+        enterPassword(password);
+        clickLogin();
+    }
+
+    @TestStep("The user enters the username")
+    public void enterUsername(String username) {
         usernameField.sendKeys(username);
+    }
+
+    @TestStep("The user enters the password")
+    public void enterPassword(String password) {
         passwordField.sendKeys(password);
+    }
+
+    @TestStep("The user clicks login")
+    public void clickLogin() {
         loginButton.click();
     }
 
     @TestStep("The user begins the registration process")
-    public void startRegistration() {
-
-    }
+    public void startRegistration() {}
 }

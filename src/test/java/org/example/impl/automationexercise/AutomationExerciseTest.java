@@ -1,4 +1,4 @@
-package org.example.automationexercise;
+package org.example.impl.automationexercise;
 
 import org.example.junit.SeleniumTest;
 import org.example.junit.extensions.DebugExtension;

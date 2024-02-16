@@ -1,4 +1,4 @@
-package org.example.google;
+package org.example.impl.google;
 
 import org.example.junit.SeleniumTest;
 import org.example.model.pages.google.GoogleHomePage;

@@ -34,18 +34,18 @@ public class ExamplePage extends Page<ExamplePage> {
 
     ...
 
-    @TestStep("The user performs an action")
+  @TestStep("The user enters information into the form and submits")
     public void performAction1() {
         performAction2();
         performAction3();
     }
 
-    @TestStep("The user performs another action")
+    @TestStep("The user enters the value into the username field")
     public void performAction2() {
         ...
     }
 
-    @TestStep("The user performs a third action")
+    @TestStep("The user clicks the submit button")
     public void performAction3() {
         ...
     }

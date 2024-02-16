@@ -1,5 +1,6 @@
 package org.example.reporting.impl.extent;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -19,8 +20,12 @@ public class ExtentReporterAspect {
        reporter = new ReporterSupplierFactory().create().supply();
     }
 
-    @Pointcut("execution(public * *(..))")
+    @Pointcut("execution (public * *(..))")
     public void publicMethod() {}
+//
+//    @Pointcut("if()")
+//    public boolean test(JoinPoint thisJoinPoint) {
+//    }
 
     @Pointcut("@annotation(org.example.reporting.TestStep)")
     public void testStepAnnotation() {}

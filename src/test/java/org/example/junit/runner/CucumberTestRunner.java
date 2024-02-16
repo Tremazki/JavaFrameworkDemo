@@ -1,4 +1,4 @@
-package org.example.runner;
+package org.example.junit.runner;
 
 import org.junit.platform.suite.api.*;
 

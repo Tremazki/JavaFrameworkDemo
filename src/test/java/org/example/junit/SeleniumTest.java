@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 
-public class SeleniumTest extends ExtentReportTest {
+public class SeleniumTest extends ReportedTest {
 
     protected WebDriver driver;
 
