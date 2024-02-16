@@ -18,7 +18,7 @@ public class ExtentReportTest {
         extent.attachReporter(sparkReporter);
     }
 
-    public ExtentTest reportStep() {
+    public ExtentTest getTestReport() {
         return currentTest;
     }
 
