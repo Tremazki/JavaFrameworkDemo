@@ -17,11 +17,11 @@ public class AutomationExerciseCheckoutPage extends Page<AutomationExerciseCheck
 
     @Override
     protected void isLoaded() {
-        assert driver.getTitle().contains("Checkout");
+        assertTitle();
     }
 
     @TestStep("The user asserts they're on the checkout page")
     public void assertTitle() {
-        assert driver.getTitle().contains("Checkout");
+        assert driver.getTitle().contains("Checkout") : "Failed to assert the user is on the checkout page";
     }
 }

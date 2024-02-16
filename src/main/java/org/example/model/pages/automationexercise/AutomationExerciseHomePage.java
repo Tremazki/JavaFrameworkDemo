@@ -29,7 +29,7 @@ public class AutomationExerciseHomePage extends Page<AutomationExerciseHomePage>
 
     @Override
     protected void isLoaded() {
-        assertTrue(driver.getTitle().contains("Automation Exercise"));
+        assert driver.getTitle().contains("Automation Exercise") : "Failed to assert the user is on the home page";
     }
 
     @TestStep("The user clicks on login")
@@ -39,8 +39,8 @@ public class AutomationExerciseHomePage extends Page<AutomationExerciseHomePage>
     }
 
     @TestStep("The user asserts they're on the signup page")
-    public void assertTitle() throws Throwable{
-        throw new Throwable("Hello");
+    public void assertTitle() {
+        assert driver.getTitle().contains("Sign up") : "Failed to assert the user is on the sign-up page";
     }
 
 }

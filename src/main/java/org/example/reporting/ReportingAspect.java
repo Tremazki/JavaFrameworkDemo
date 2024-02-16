@@ -16,21 +16,27 @@ public class ReportingAspect {
     public void methodToWrap() {}
 
     @Around("methodToWrap()")
-    public void around(ProceedingJoinPoint call) {
+    public Object around(ProceedingJoinPoint call) throws Throwable {
         MethodSignature signature   = (MethodSignature) call.getSignature();
         Method          method      = signature.getMethod();
 
         TestStep node = method.getAnnotation(TestStep.class);
         testName = node.value();
+
+        return call.proceed(call.getArgs());
     }
 
     @AfterReturning(pointcut = "methodToWrap()")
     public void afterReturning() {
-        ExtentReportUtilities.getExtentTest().createNode(testName).pass("The step has passed successfully");
+        ExtentReportUtilities.getExtentTest().createNode(testName).pass(
+                "The step has passed successfully"
+        );
     }
 
     @AfterThrowing(pointcut = "methodToWrap()", throwing = "_e")
     public void afterThrowing(Throwable _e) {
-        ExtentReportUtilities.getExtentTest().createNode(testName).fail("The step has failed");
+        ExtentReportUtilities.getExtentTest().createNode(testName).fail(
+                "Failed with the following exception: \n" + _e.getMessage()
+        );
     }
 }
