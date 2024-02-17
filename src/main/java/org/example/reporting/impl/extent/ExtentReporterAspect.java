@@ -8,12 +8,14 @@ import org.example.reporting.TestStep;
 import org.example.reporting.impl.ReporterSupplierFactory;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 @Aspect
 public class ExtentReporterAspect {
 
     private final IReporter reporter;
     private String          testStep;
+    private Object[]        args;
 
     ExtentReporterAspect() {
        reporter = new ReporterSupplierFactory().create().supply();
@@ -21,10 +23,6 @@ public class ExtentReporterAspect {
 
     @Pointcut("execution (public * *(..))")
     public void publicMethod() {}
-//
-//    @Pointcut("if()")
-//    public boolean test(JoinPoint thisJoinPoint) {
-//    }
 
     @Pointcut("@annotation(org.example.reporting.TestStep)")
     public void testStepAnnotation() {}
@@ -35,12 +33,15 @@ public class ExtentReporterAspect {
         Method          method      = signature.getMethod();
 
         testStep = method.getAnnotation(TestStep.class).value();
-        return call.proceed(call.getArgs());
+        args     = call.getArgs();
+
+        return call.proceed(args);
     }
 
     @AfterReturning(pointcut = "publicMethod() && testStepAnnotation()")
     public void methodSuccess() {
-        reporter.passStep(testStep, "The step has passed successfully");
+        StringBuilder builder = Arrays.stream(args).collect(StringBuilder::new, StringBuilder::append, (a, b) -> a.append(",").append(b));
+        reporter.passStep(testStep, "Step arguments: " + builder);
     }
 
     @AfterThrowing(pointcut = "publicMethod() && testStepAnnotation()", throwing = "_e")

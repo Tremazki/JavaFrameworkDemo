@@ -11,6 +11,7 @@
           <option name="goals">
             <list>
               <option value="test" />
+              <option value="--debug" />
               <option value="-Dremote=false" />
               <option value="-Dbrowser=edge" />
             </list>

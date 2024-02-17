@@ -1,6 +1,7 @@
 package org.example.model.pages.google;
 
 import org.example.model.pages.Page;
+import org.example.reporting.TestStep;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,18 +18,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class GoogleHomePage extends Page<GoogleHomePage> {
 
-
-    /* Define our locators */
     static final String SearchButtonLocation = "(.//input[@aria-label=\"Google Search\"])[1]";
 
-    /* Define our WebElement objects since we want to use the Selenium Page Factory to instantiate them for us */
     @FindBy(name = "q")
     private WebElement searchBar;
 
     @FindBy(how = How.XPATH, using = SearchButtonLocation)
     private WebElement searchButton;
 
-    /* The call to super() will make the call to the Page Factory in our AbstractPage.java class */
     public GoogleHomePage(WebDriver driver) {
         super(driver);
     }
@@ -40,18 +37,17 @@ public class GoogleHomePage extends Page<GoogleHomePage> {
 
     @Override
     protected void isLoaded() {
-        assertTrue(driver.getTitle().contains("Google"));
+        assert driver.getTitle().contains("Google");
     }
 
-    /* Convenience function for entering search text */
-    public GoogleHomePage enterSearchText(String text) {
+    @TestStep("The user enters the text into the search bar")
+    public void enterSearchText(String text) {
         log.info("Entering search text..");
         wait.until(ExpectedConditions.visibilityOf(searchBar));
         searchBar.sendKeys(text);
-        return this;
     }
 
-    /* Convenience function for clicking the search button */
+    @TestStep("The user clicks the search button")
     public void clickSearchButton() {
         log.info("Clicking the search button..");
         wait.until(ExpectedConditions.visibilityOf(searchButton));

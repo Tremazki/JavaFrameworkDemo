@@ -1,6 +1,6 @@
 package org.example.reporting.impl.extent;
 
-import org.example.reporting.ISupplier;
+import org.example.ISupplier;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

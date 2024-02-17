@@ -1,4 +1,4 @@
-package org.example.reporting;
+package org.example;
 
 public interface ISupplier<T> {
     T supply();

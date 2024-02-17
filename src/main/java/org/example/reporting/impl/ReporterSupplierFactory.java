@@ -1,10 +1,10 @@
 package org.example.reporting.impl;
 
 import org.example.reporting.IReporter;
-import org.example.reporting.ISupplier;
+import org.example.ISupplier;
 import org.example.reporting.impl.extent.ExtentReporter;
 import org.example.reporting.impl.extent.ExtentReporterSupplier;
-import org.example.selenium.driver.IFactory;
+import org.example.IFactory;
 
 import java.util.HashMap;
 import java.util.Map;

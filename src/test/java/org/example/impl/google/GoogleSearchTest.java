@@ -17,8 +17,8 @@ public class GoogleSearchTest extends SeleniumTest {
          */
         GoogleHomePage home = new GoogleHomePage(driver).get();
 
-        home.enterSearchText("Test")
-            .clickSearchButton();
+        home.enterSearchText("Test");
+        home.clickSearchButton();
 
         // Assert the new URL contains the word 'search' as a basic true/false scenario
         assert driver.getCurrentUrl().contains("search");

@@ -1,6 +1,6 @@
 package org.example.selenium.driver.impl;
 
-import org.example.selenium.driver.IFactory;
+import org.example.IFactory;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

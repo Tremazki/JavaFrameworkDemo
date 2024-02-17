@@ -1,4 +1,4 @@
-package org.example.selenium.driver;
+package org.example;
 
 public interface IFactory<T,V> {
     T create();
