@@ -44,7 +44,7 @@ public class AutomationExerciseSignUpPage extends Page<AutomationExerciseSignUpP
         assert driver.getTitle().contains("Signup / Login");
     }
 
-    @TestStep("The user enters their login information and submits the login form")
+    @TestStep(value = "The user enters their login information and submits the login form", logArguments = true)
     public void submitLoginForm(String username, String password) {
         usernameField.sendKeys(username);
         passwordField.sendKeys(password);

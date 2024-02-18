@@ -8,7 +8,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface TestStep {
-    String value();
-
-    String optional() default "";
+    String  value();
+    boolean logArguments() default false;
 }
