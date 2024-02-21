@@ -22,6 +22,7 @@ public class AutomationExerciseCheckoutPage extends Page<AutomationExerciseCheck
 
     @TestStep("The user asserts they're on the checkout page")
     public void assertTitle() {
+        log.info("TEST MESSAGE");
         isLoaded();
     }
 }

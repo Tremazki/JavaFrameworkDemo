@@ -36,7 +36,7 @@ public class Log4jExtension implements BeforeEachCallback, BeforeAllCallback, Af
         if(exception.isEmpty()) {
             log.info("Successfully executed the test case: " + extensionContext.getDisplayName());
         } else {
-            log.error("Execution of the test case completed with failures - see the given exception: " + exception.get());
+            log.error("Execution of the test case completed with failures - see the given exception: \n" + exception.get());
         }
     }
 }
