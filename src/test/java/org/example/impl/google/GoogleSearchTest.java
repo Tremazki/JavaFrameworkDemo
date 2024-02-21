@@ -5,7 +5,6 @@ import org.example.model.pages.google.GoogleHomePage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("Application Tests - Firefox")
 public class GoogleSearchTest extends SeleniumTest {
 
     @Test

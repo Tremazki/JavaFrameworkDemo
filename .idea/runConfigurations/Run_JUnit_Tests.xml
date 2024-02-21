@@ -10,8 +10,8 @@
           </option>
           <option name="goals">
             <list>
+              <option value="-Dmaven.surefire.debug" />
               <option value="test" />
-              <option value="--debug" />
               <option value="-Dremote=false" />
               <option value="-Dbrowser=edge" />
             </list>

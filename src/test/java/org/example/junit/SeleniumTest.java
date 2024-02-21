@@ -1,12 +1,15 @@
 package org.example.junit;
 
+import org.example.junit.extensions.Log4jExtension;
 import org.example.selenium.ScreenshotUtilities;
 import org.example.selenium.driver.impl.WebDriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
+@ExtendWith(Log4jExtension.class)
 public class SeleniumTest extends ReportedTest {
 
     protected WebDriver driver;

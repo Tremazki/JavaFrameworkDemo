@@ -8,9 +8,7 @@ import org.example.model.pages.automationexercise.AutomationExerciseSecuredPage;
 import org.example.model.pages.automationexercise.AutomationExerciseSignUpPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith(Log4jExtension.class)
 public class AutomationExerciseTest extends SeleniumTest {
 
     @Test
