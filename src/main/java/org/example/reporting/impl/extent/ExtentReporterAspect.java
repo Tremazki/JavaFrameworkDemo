@@ -7,7 +7,6 @@ import org.example.reporting.IReporter;
 import org.example.reporting.TestStep;
 import org.example.reporting.impl.ReporterSupplierFactory;
 import org.example.selenium.ScreenshotUtilities;
-import org.openqa.selenium.WebDriver;
 
 import java.lang.reflect.Method;
 
@@ -24,7 +23,7 @@ public class ExtentReporterAspect {
     private Object[]        args;
 
     ExtentReporterAspect() {
-       reporter = new ReporterSupplierFactory().create().supply();
+       reporter = new ReporterSupplierFactory().create(ExtentReporter.class).supply();
     }
 
     @Pointcut("execution (public * *(..))")
@@ -39,12 +38,10 @@ public class ExtentReporterAspect {
         Method          method      = signature.getMethod();
         TestStep        annotation  = method.getAnnotation(TestStep.class);
 
-        // Flags
         screenshotPass  = annotation.screenshotPass();
         screenshotFail  = annotation.screenshotFail();
         reportArguments = annotation.reportArguments();
 
-        // Arguments
         paramNames = signature.getParameterNames();
         args       = call.getArgs();
 
@@ -64,6 +61,10 @@ public class ExtentReporterAspect {
         reporter.failStep("Test step has failed with the following exception:<br><br>" + _e.getMessage());
     }
 
+    /**
+     * Call ScreenshotUtilities and embed the returning Base64 image into the current node
+     * @param _perform Boolean for whether the screenshot should be taken and embedded into the report
+     */
     private void takeScreenshot(boolean _perform) {
         if(_perform) {
             reporter.embedImage(ScreenshotUtilities.takeScreenShotAsBase64());

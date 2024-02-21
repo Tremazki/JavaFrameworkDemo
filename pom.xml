@@ -11,8 +11,11 @@
   <url>http://maven.apache.org</url>
 
   <properties>
+    <!-- Maven Properties -->
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+
+    <!-- Build Properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -163,6 +166,13 @@
             </goals>
           </execution>
         </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjtools</artifactId>
+            <version>1.9.2</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <!-- Maven Compiler Plugin -->

@@ -1,7 +1,6 @@
-package org.example.impl.automationexercise;
+package org.example.selenium.automationexercise;
 
 import org.example.junit.SeleniumTest;
-import org.example.junit.extensions.Log4jExtension;
 import org.example.model.pages.automationexercise.AutomationExerciseCheckoutPage;
 import org.example.model.pages.automationexercise.AutomationExerciseHomePage;
 import org.example.model.pages.automationexercise.AutomationExerciseSecuredPage;
