@@ -17,6 +17,10 @@
 
     <!-- Build Properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- Dependency Versions (If not supplied by BOM) -->
+    <version.aspectj>1.9.2</version.aspectj>
+    <version.extent>5.1.1</version.extent>
   </properties>
 
   <profiles>
@@ -130,20 +134,20 @@
     <dependency>
       <groupId>com.aventstack</groupId>
       <artifactId>extentreports</artifactId>
-      <version>5.1.1</version>
+      <version>${version.extent}</version>
     </dependency>
 
     <!-- AspectJ -->
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjweaver</artifactId>
-      <version>1.9.2</version> <!-- Java 11 only supports up to version 1.9.2 -->
+      <version>${version.aspectj}</version> <!-- Java 11 only supports up to version 1.9.2 -->
     </dependency>
 
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
-      <version>1.9.2</version> <!-- Java 11 only supports up to version 1.9.2 -->
+      <version>${version.aspectj}</version> <!-- Java 11 only supports up to version 1.9.2 -->
     </dependency>
   </dependencies>
 
@@ -155,7 +159,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
-        <version>1.14.0</version>
+        <version>1.15.0</version>
         <configuration>
           <complianceLevel>11</complianceLevel>
         </configuration>
@@ -170,7 +174,7 @@
           <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjtools</artifactId>
-            <version>1.9.2</version>
+            <version>${version.aspectj}</version>
           </dependency>
         </dependencies>
       </plugin>
