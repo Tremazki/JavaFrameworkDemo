@@ -1,7 +1,7 @@
 package org.example.impl.automationexercise;
 
 import org.example.junit.SeleniumTest;
-import org.example.junit.extensions.DebugExtension;
+import org.example.junit.extensions.Log4jExtension;
 import org.example.model.pages.automationexercise.AutomationExerciseCheckoutPage;
 import org.example.model.pages.automationexercise.AutomationExerciseHomePage;
 import org.example.model.pages.automationexercise.AutomationExerciseSecuredPage;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith(DebugExtension.class)
+@ExtendWith(Log4jExtension.class)
 public class AutomationExerciseTest extends SeleniumTest {
 
     @Test

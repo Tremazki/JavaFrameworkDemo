@@ -1,5 +1,7 @@
 package org.example.reporting;
 
+import org.openqa.selenium.WebDriver;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -9,5 +11,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface TestStep {
     String  value();
-    boolean logArguments() default false;
+    boolean reportArguments() default false;
+
+    boolean screenshotPass()  default false;
+    boolean screenshotFail()  default true;
 }

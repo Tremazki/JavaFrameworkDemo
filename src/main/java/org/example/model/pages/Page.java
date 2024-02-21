@@ -34,6 +34,10 @@ public abstract class Page<T extends Page<T>> extends LoadableComponent<T> {
         this.parent = parent;
     }
 
+    public WebDriver getDriver() {
+        return driver;
+    }
+
     protected abstract void load();
 
     protected abstract void isLoaded();

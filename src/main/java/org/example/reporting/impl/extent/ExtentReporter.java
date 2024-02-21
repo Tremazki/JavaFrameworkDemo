@@ -10,6 +10,7 @@ public class ExtentReporter implements IReporter {
     private final ExtentReports extent;
 
     private ExtentTest extentTest;
+    private ExtentTest node;
 
     public ExtentReporter(String _reportName) {
         extent = new ExtentReports();
@@ -20,16 +21,20 @@ public class ExtentReporter implements IReporter {
         extentTest = extent.createTest(_name);
     }
 
-    public void passStep(String _step, String _details) {
-        extentTest.createNode(_step).pass(_details);
+    public void beginStep(String _step) {
+        node = extentTest.createNode(_step);
     }
 
-    public void failStep(String _step, String _details) {
-        extentTest.createNode(_step).fail(_details);
+    public void passStep(String _details) {
+        node.pass(_details);
     }
 
-    public void embedImage(String _path) {
-        extentTest.addScreenCaptureFromPath(_path);
+    public void failStep(String _details) {
+        node.fail(_details);
+    }
+
+    public void embedImage(String _base64) {
+        node.addScreenCaptureFromBase64String(_base64);
     }
 
     public void write() {

@@ -6,18 +6,20 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.example.reporting.IReporter;
 import org.example.reporting.TestStep;
 import org.example.reporting.impl.ReporterSupplierFactory;
+import org.example.selenium.ScreenshotUtilities;
+import org.openqa.selenium.WebDriver;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 @Aspect
 public class ExtentReporterAspect {
 
     private final IReporter reporter;
-    private String          testStep;
 
     //Temporary variables
-    private boolean         logParams = false;
+    private boolean         screenshotFail  = false;
+    private boolean         screenshotPass  = false;
+    private boolean         reportArguments = false;
     private String[]        paramNames;
     private Object[]        args;
 
@@ -37,28 +39,41 @@ public class ExtentReporterAspect {
         Method          method      = signature.getMethod();
         TestStep        annotation  = method.getAnnotation(TestStep.class);
 
-        testStep   = annotation.value();
-        logParams  = annotation.logArguments();
+        // Flags
+        screenshotPass  = annotation.screenshotPass();
+        screenshotFail  = annotation.screenshotFail();
+        reportArguments = annotation.reportArguments();
+
+        // Arguments
         paramNames = signature.getParameterNames();
         args       = call.getArgs();
 
+        reporter.beginStep(annotation.value());
         return call.proceed(args);
     }
 
     @AfterReturning(pointcut = "publicMethod() && testStepAnnotation()")
     public void methodSuccess() {
-        reporter.passStep(testStep, getSuccessDetails());
+        takeScreenshot(screenshotPass);
+        reporter.passStep(generateSuccessMessage());
     }
 
     @AfterThrowing(pointcut = "publicMethod() && testStepAnnotation()", throwing = "_e")
     public void methodFail(Throwable _e) {
-        reporter.failStep(testStep, "Test step has failed with the following exception:<br><br>" + _e.getMessage());
+        takeScreenshot(screenshotFail);
+        reporter.failStep("Test step has failed with the following exception:<br><br>" + _e.getMessage());
     }
 
-    private String getSuccessDetails() {
+    private void takeScreenshot(boolean _perform) {
+        if(_perform) {
+            reporter.embedImage(ScreenshotUtilities.takeScreenShotAsBase64());
+        }
+    }
+
+    private String generateSuccessMessage() {
         StringBuilder builder = new StringBuilder();
         builder.append("Test step has passed successfully");
-        if(logParams) {
+        if(reportArguments) {
             builder.append("<br><br>");
             for (int i = 0; i < paramNames.length; i++) {
                 builder.append(String.format("Parameter: [%s] with value: [%s]<br>", paramNames[i], args[i]));
