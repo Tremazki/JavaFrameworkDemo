@@ -29,6 +29,17 @@ public class WebDriverFactory {
        this.capabilitiesFactory = capabilitiesFactory;
     }
 
+    /**
+     * Determine if the current run is remote and return a remote or local driver based on the 'remote' system property.
+     * <br>
+     * 1) If it's remote, we retrieve the 'grid' system property and use that URL for our remote grid target.
+     * 2) If it's local, we use the LocalDriverFactory class to determine which local driver to create using the 'browser'
+     * system property.
+     *
+     * @return WebDriver instance
+     * @throws URISyntaxException
+     * @throws MalformedURLException
+     */
     public WebDriver create() throws URISyntaxException, MalformedURLException {
         if (remote) {
             return new RemoteWebDriver(new URI(grid).toURL(), capabilitiesFactory.create());

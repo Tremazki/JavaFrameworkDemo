@@ -21,8 +21,10 @@ test -Pjunit-selenium -Dremote=false -Dbrowser=edge
 
 ## Limitations
 
-In order for the reports to accurately log the steps and pass/fail status, methods denoted by @TestStep must not be 
-called within other methods. Please see the example below for how we can organize our methods to avoid this.
+In order for the reports to automatically and accurately log the steps and pass/fail status, methods denoted by @TestStep 
+must not be called within other @TestStep methods. 
+
+Please see the example below for how we can organize our methods to avoid this.
 
 ### Incorrect:
 ```Java
@@ -34,7 +36,7 @@ public class ExamplePage extends Page<ExamplePage> {
 
     ...
 
-  @TestStep("The user enters information into the form and submits")
+    @TestStep("The user enters information into the form and submits")
     public void performAction1() {
         performAction2();
         performAction3();
@@ -82,6 +84,5 @@ public class ExamplePage extends Page<ExamplePage> {
     }
 }
 ```
-
 
 I'm exploring possible ways of excluding these calls from AspectJ weaving however I have not found a way to do this yet.

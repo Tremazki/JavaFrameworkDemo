@@ -31,14 +31,6 @@ public class ScreenshotUtilities {
     }
 
     /**
-     * Takes a screenshot and as Base64 using the internal static driver and returns it using the current state of the
-     * given WebDriver instance
-     */
-    public static String takeScreenShotAsBase64() {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
-    }
-
-    /**
      * Takes a screenshot and saves it to the ./tmp/ folder using the current state of the given WebDriver instance
      * @param driver WebDriver instance
      * @throws IOException IOException if the file can not be copied successfully
@@ -57,6 +49,14 @@ public class ScreenshotUtilities {
         FileHandler.copy(screenshot, savedFile);
 
         return savedFile.getCanonicalPath();
+    }
+
+    /**
+     * Takes a screenshot and as Base64 using the internal static driver and returns it using the current state of the
+     * given WebDriver instance
+     */
+    public static String takeScreenShotAsBase64() {
+        return takeScreenShotAsBase64(driver);
     }
 
     /**

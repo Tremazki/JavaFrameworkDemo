@@ -14,7 +14,7 @@ public class AutomationExerciseSecuredPage extends Page<AutomationExerciseSecure
     private final String username;
     private final String password;
 
-    static final String logoutLocator = ".//a[@href=\"/logout\"]";
+    private final String logoutLocator = ".//a[@href=\"/logout\"]";
 
     public AutomationExerciseSecuredPage(WebDriver driver, LoadableComponent<?> parent, String username, String password) {
         super(driver, parent);

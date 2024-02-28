@@ -32,7 +32,7 @@ public abstract class Page<T extends Page<T>> extends LoadableComponent<T> {
         this.driver           = driver;
         this.wait             = new WebDriverWait(driver, Duration.ofSeconds(30));
         this.objectRepository = new Properties();
-        this.log              = LogManager.getLogger(getClass());
+        this.log              = LogManager.getLogger(this.getClass());
 
         loadProperties();
         PageFactory.initElements(driver, this);
@@ -43,10 +43,6 @@ public abstract class Page<T extends Page<T>> extends LoadableComponent<T> {
         this.parent = parent;
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
     protected abstract void load();
 
     protected abstract void isLoaded();
@@ -54,6 +50,8 @@ public abstract class Page<T extends Page<T>> extends LoadableComponent<T> {
     /**
      * Load a properties file named after the class name of this Page located under the ./resources/page/ folder.
      * This is effectively the object repository for the given page object.
+     *
+     * This is not required for a page to function and is more a preference of the developer/tester
      */
     private void loadProperties() {
         Class<?> clazz = this.getClass();

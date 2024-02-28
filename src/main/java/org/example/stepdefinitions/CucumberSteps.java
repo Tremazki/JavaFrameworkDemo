@@ -2,21 +2,23 @@ package org.example.stepdefinitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import org.example.selenium.DriverUtilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+
+/**
+ * This is an example of a Step Definitions file automatically picked up by the Cucumber JUnit runner
+ * to be used as glue for the feature files.
+ */
 public class CucumberSteps {
 
     protected WebDriver driver;
 
     @Given("(the user )opens the browser")
-    public void openBrowser() {
-        driver = new EdgeDriver();
-    }
-
-    @Given("(the user )opens the application")
-    public void openApplication() {
-
+    public void openBrowser() throws MalformedURLException, URISyntaxException {
+        driver = DriverUtilities.createDefaultDriver();
     }
 
     @When("(the user )closes the browser")

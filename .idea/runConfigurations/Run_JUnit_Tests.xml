@@ -13,6 +13,7 @@
               <option value="test" />
               <option value="-Dremote=false" />
               <option value="-Dbrowser=edge" />
+              <option value="-Dreporter=extent" />
             </list>
           </option>
           <option name="pomFileName" />

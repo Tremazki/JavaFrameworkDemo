@@ -149,6 +149,15 @@
       <artifactId>aspectjrt</artifactId>
       <version>${version.aspectj}</version> <!-- Java 11 only supports up to version 1.9.2 -->
     </dependency>
+
+    <!-- Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.16</version>
+      <scope>provided</scope>
+    </dependency>
+
   </dependencies>
 
 

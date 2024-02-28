@@ -1,4 +1,4 @@
-package org.example.reporting.impl.extent;
+package org.example.reporting.impl;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -11,7 +11,7 @@ import org.example.selenium.ScreenshotUtilities;
 import java.lang.reflect.Method;
 
 @Aspect
-public class ExtentReporterAspect {
+public class ReporterAspect {
 
     private final IReporter reporter;
 
@@ -22,8 +22,8 @@ public class ExtentReporterAspect {
     private String[]        paramNames;
     private Object[]        args;
 
-    ExtentReporterAspect() {
-       reporter = new ReporterSupplierFactory().create(ExtentReporter.class).supply();
+    ReporterAspect() {
+       reporter = new ReporterSupplierFactory().create().supply();
     }
 
     @Pointcut("execution (public * *(..))")
