@@ -1,5 +1,7 @@
 package org.example.reporting.impl;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.reporting.IReporter;
 import org.example.ISupplier;
 import org.example.reporting.impl.disabled.DisabledReporter;
@@ -20,6 +22,7 @@ import java.util.Map;
 public class ReporterSupplierFactory implements IFactory<ISupplier<? extends IReporter>, Class<?>> {
 
     private final Map<Class<?>, ISupplier<? extends IReporter>> registry = new HashMap<>();
+    private final Logger                                        logger   = LogManager.getLogger();
 
     public ReporterSupplierFactory(){
         registry.put(DisabledReporter.class, new DisabledReporterSupplier());
@@ -28,11 +31,23 @@ public class ReporterSupplierFactory implements IFactory<ISupplier<? extends IRe
 
     public ISupplier<? extends IReporter> create() {
         String property = System.getProperty("reporter", "extent");
+        logger.info(String.format(
+                "The default reporter supplier is extent report. \n " +
+                "To specify an alternative, use the 'reporter' system property when executing the framework. \n " +
+                "Valid values include: {'extent', 'disabled'} \n " +
+                "Found the value: [%s]", property));
         return registry.get(convertPropertyNamesToClass(property));
     }
 
     @Override
     public ISupplier<? extends IReporter> create(Class<?> _clazz) {
+        if(!registry.containsKey(_clazz)) {
+            logger.error(String.format(
+                    "Failed to locate an appropriate reporter supplier using the following key: [%s]. \n" +
+                    "The default supplier will be returned to allow execution to continue.", _clazz.getSimpleName())
+            );
+            return create();
+        }
         return registry.get(_clazz);
     }
 
