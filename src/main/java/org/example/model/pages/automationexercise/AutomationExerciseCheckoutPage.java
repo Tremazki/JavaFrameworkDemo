@@ -19,10 +19,4 @@ public class AutomationExerciseCheckoutPage extends Page<AutomationExerciseCheck
     protected void isLoaded() {
         assert driver.getTitle().contains("Checkout") : "Failed to assert the user is on the checkout page";
     }
-
-    @TestStep("The user asserts they're on the checkout page")
-    public void assertTitle() {
-        log.info("TEST MESSAGE");
-        isLoaded();
-    }
 }

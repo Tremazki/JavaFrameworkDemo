@@ -40,6 +40,12 @@ public class GoogleHomePage extends Page<GoogleHomePage> {
         assert driver.getTitle().contains("Google");
     }
 
+    @TestStep("The user enters the text into the search bar and clicks the search button")
+    public void enterTextAndSubmit(String text) {
+       enterSearchText(text);
+       clickSearchButton();
+    }
+
     @TestStep("The user enters the text into the search bar")
     public void enterSearchText(String text) {
         log.info("Entering search text..");

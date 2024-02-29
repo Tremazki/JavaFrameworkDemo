@@ -2,14 +2,12 @@ package org.example.model.pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
+import org.example.reporting.TestStep;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
@@ -19,6 +17,7 @@ import java.util.Properties;
  * In this case, since we want all of our pages to initialize using the PageFactory, we use the constructor here to enforce that
  * in the subclasses.
  */
+@SuppressWarnings("unchecked")
 public abstract class Page<T extends Page<T>> extends LoadableComponent<T> {
 
     protected Properties           objectRepository;
@@ -47,10 +46,34 @@ public abstract class Page<T extends Page<T>> extends LoadableComponent<T> {
 
     protected abstract void isLoaded();
 
+    @TestStep(value = "The user validates the title equals the given string", reportArguments = true)
+    public T validateTitleEquals(String title) {
+        assert driver.getTitle().equals(title);
+        return (T) this;
+    }
+
+    @TestStep(value = "The user validates the title contains the given string", reportArguments = true)
+    public T validateTitleContains(String title) {
+        assert driver.getTitle().contains(title);
+        return (T) this;
+    }
+
+    @TestStep(value = "The user validates the url equals the given string", reportArguments = true)
+    public T validateUrlEquals(String url) {
+        assert driver.getCurrentUrl().equals(url);
+        return (T) this;
+    }
+
+    @TestStep(value = "The user validates the url contains the given string", reportArguments = true)
+    public T validateUrlContains(String url) {
+        assert driver.getCurrentUrl().contains(url);
+        return (T) this;
+    }
+
     /**
      * Load a properties file named after the class name of this Page located under the ./resources/page/ folder.
      * This is effectively the object repository for the given page object.
-     *
+     * <br>
      * This is not required for a page to function and is more a preference of the developer/tester
      */
     private void loadProperties() {
@@ -58,7 +81,7 @@ public abstract class Page<T extends Page<T>> extends LoadableComponent<T> {
         try {
             objectRepository.load(clazz.getResourceAsStream("/pages/" + clazz.getSimpleName() + ".properties"));
         } catch (Throwable e) {
-            log.debug("Failed to find an associated object properties folder for the page class: " + clazz.getName());
+            log.info("Failed to find an associated object properties folder for the page class: " + clazz.getName());
         }
     }
 }

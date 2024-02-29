@@ -11,5 +11,4 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME,   value = "org.example.stepdefinitions")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "org.example.cucumber.CucumberReportListener, org.example.cucumber.CucumberLogListener")
 public class CucumberTestRunner {
-    // Intentionally empty, the above annotations will tell JUnit what to look for
 }

@@ -24,7 +24,7 @@ jobs:
         cache: maven
         
     - name: Build the project with Maven
-      run: mvn test
+      run: mvn test -Dbrowser=edge
 
     - name: Stop the Selenium Grid Docker Instance
       if: always()

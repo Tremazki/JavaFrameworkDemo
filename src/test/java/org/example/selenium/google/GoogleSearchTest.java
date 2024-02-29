@@ -10,17 +10,11 @@ public class GoogleSearchTest extends SeleniumTest {
     @Test
     @DisplayName("Test Google Search Functionality")
     void testGoogleSearch() {
-        /*
-         * Create the new page object using our driver, internally this will call the PageFactory and resolve the
-         * WebElements within the class
-         */
         GoogleHomePage home = new GoogleHomePage(driver).get();
-
-        home.enterSearchText("Test");
-        home.clickSearchButton();
-
-        // Assert the new URL contains the word 'search' as a basic true/false scenario
-        assert driver.getCurrentUrl().contains("search");
+//        home.enterSearchText("Test");
+//        home.clickSearchButton();
+        home.enterTextAndSubmit("Test");
+        home.validateUrlContains("search");
     }
 
 }

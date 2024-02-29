@@ -17,11 +17,9 @@ public class CucumberSteps {
     protected WebDriver driver;
 
     @Given("(the user )opens the browser")
-    public void openBrowser() throws Exception {
-//        driver = DriverUtilities.createDefaultDriver();
-        throw new Exception("");
+    public void openBrowser() throws MalformedURLException, URISyntaxException {
+        driver = DriverUtilities.createDefaultDriver();
     }
-
 
     @When("(the user )closes the browser")
     public void closeBrowser() {

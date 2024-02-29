@@ -30,7 +30,6 @@ public class AutomationExerciseTest extends SeleniumTest {
         // TODO Rework the secure page, looks weird and unwieldy
         AutomationExerciseCheckoutPage checkoutPage = new AutomationExerciseCheckoutPage(driver);
         AutomationExerciseSecuredPage  securedPage =  new AutomationExerciseSecuredPage(driver, checkoutPage, "tyler@qac.com", "password").get();
-        checkoutPage.assertTitle();
     }
 
 }
