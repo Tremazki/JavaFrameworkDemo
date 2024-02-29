@@ -3,29 +3,34 @@ package org.example.model.pages.automationexercise;
 import org.example.model.pages.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.LoadableComponent;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class AutomationExerciseSecuredPage extends Page<AutomationExerciseSecuredPage> {
+@SuppressWarnings("unchecked")
+public class AutomationExerciseSecuredPage<T extends Page<T>> extends Page<T> {
 
     private final String username;
     private final String password;
 
     private final String logoutLocator = ".//a[@href=\"/logout\"]";
 
-    public AutomationExerciseSecuredPage(WebDriver driver, LoadableComponent<?> parent, String username, String password) {
-        super(driver, parent);
+    public AutomationExerciseSecuredPage(Page<?> parent, String username, String password) {
+        super(parent);
         this.username = username;
         this.password = password;
     }
 
     @Override
     protected void load() {
-        new AutomationExerciseSignUpPage(driver).get().submitLoginForm(username, password);
+        AutomationExerciseSignUpPage signUpPage = new AutomationExerciseSignUpPage(driver).get();
+        signUpPage.submitLoginForm(username, password);
         parent.get();
+    }
+
+    @Override
+    public T get() {
+        super.get();
+        return (T) parent;
     }
 
     @Override

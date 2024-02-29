@@ -11,8 +11,6 @@ public class GoogleSearchTest extends SeleniumTest {
     @DisplayName("Test Google Search Functionality")
     void testGoogleSearch() {
         GoogleHomePage home = new GoogleHomePage(driver).get();
-//        home.enterSearchText("Test");
-//        home.clickSearchButton();
         home.enterTextAndSubmit("Test");
         home.validateUrlContains("search");
     }

@@ -27,9 +27,12 @@ public class AutomationExerciseTest extends SeleniumTest {
     @Test
     @DisplayName("Navigate to the checkout")
     public void navigateToCheckout()  {
-        // TODO Rework the secure page, looks weird and unwieldy
-        AutomationExerciseCheckoutPage checkoutPage = new AutomationExerciseCheckoutPage(driver);
-        AutomationExerciseSecuredPage  securedPage =  new AutomationExerciseSecuredPage(driver, checkoutPage, "tyler@qac.com", "password").get();
+        AutomationExerciseCheckoutPage checkoutPage = new AutomationExerciseSecuredPage<AutomationExerciseCheckoutPage>(
+                new AutomationExerciseCheckoutPage(driver),
+                "tyler@qac.com", "password"
+        ).get();
+
+        checkoutPage.validateTitleContains("Checkout");
     }
 
 }

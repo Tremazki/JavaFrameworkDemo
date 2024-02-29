@@ -28,9 +28,6 @@ public class ReporterAspect {
     @Pointcut("execution(@org.example.reporting.TestStep * *(..))")
     public void testStepPointCut() {}
 
-//    @Pointcut("call(@org.example.reporting.TestStep * *(..))")
-//    public void callMethod() {}
-
     @Before("testStepPointCut() && !cflowbelow(testStepPointCut())")
     public void retrieveMethodInformation(JoinPoint call) {
         MethodSignature signature   = (MethodSignature) call.getSignature();

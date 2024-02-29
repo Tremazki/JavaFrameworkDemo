@@ -21,7 +21,7 @@ import java.util.Properties;
 public abstract class Page<T extends Page<T>> extends LoadableComponent<T> {
 
     protected Properties           objectRepository;
-    protected LoadableComponent<?> parent;
+    protected Page<?>              parent;
     protected WebDriver            driver;
     protected WebDriverWait        wait;
     protected Logger               log;
@@ -37,14 +37,10 @@ public abstract class Page<T extends Page<T>> extends LoadableComponent<T> {
         PageFactory.initElements(driver, this);
     }
 
-    public Page(WebDriver driver, LoadableComponent<?> parent) {
-        this(driver);
+    public Page(Page<?> parent) {
+        this(parent.getDriver());
         this.parent = parent;
     }
-
-    protected abstract void load();
-
-    protected abstract void isLoaded();
 
     @TestStep(value = "The user validates the title equals the given string", reportArguments = true)
     public T validateTitleEquals(String title) {
@@ -70,12 +66,14 @@ public abstract class Page<T extends Page<T>> extends LoadableComponent<T> {
         return (T) this;
     }
 
-    /**
-     * Load a properties file named after the class name of this Page located under the ./resources/page/ folder.
-     * This is effectively the object repository for the given page object.
-     * <br>
-     * This is not required for a page to function and is more a preference of the developer/tester
-     */
+    protected abstract void load();
+
+    protected abstract void isLoaded();
+
+    protected WebDriver getDriver() {
+        return driver;
+    }
+
     private void loadProperties() {
         Class<?> clazz = this.getClass();
         try {

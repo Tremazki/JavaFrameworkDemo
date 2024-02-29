@@ -8,8 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 /**
  * An example of an object following the Page Object Model pattern.
  * <br>
@@ -42,8 +40,9 @@ public class GoogleHomePage extends Page<GoogleHomePage> {
 
     @TestStep("The user enters the text into the search bar and clicks the search button")
     public void enterTextAndSubmit(String text) {
-       enterSearchText(text);
-       clickSearchButton();
+        log.info("Entering search text and clicking on the search button..");
+        enterSearchText(text);
+        clickSearchButton();
     }
 
     @TestStep("The user enters the text into the search bar")
