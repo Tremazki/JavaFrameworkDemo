@@ -6,19 +6,26 @@ import org.example.selenium.capabilities.xml.XmlCapabilitiesFactory;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class CapabilitiesFactorySupplier implements ISupplier<CapabilitiesFactory> {
+/**
+ * CapabilitiesFactorySupplier is responsible for storing all possible CapabilitiesFactory objects
+ * and returning them based on the specified system property, 'capabilities' allowing for easy configuring
+ * through the command line.
+ */
+public final class CapabilitiesFactorySupplier {
 
-    private final Map<Class<?>, CapabilitiesFactory> registry;
+    private static Map<Class<?>, CapabilitiesFactory> registry;
 
     public CapabilitiesFactorySupplier() throws URISyntaxException {
-        registry = new HashMap<>();
-        registry.put(CapabilitiesFactory.class,    new CapabilitiesFactory());
-        registry.put(XmlCapabilitiesFactory.class, new XmlCapabilitiesFactory());
+        if(registry == null || registry.isEmpty()) {
+            registry = new ConcurrentHashMap<>();
+            registry.put(CapabilitiesFactory.class,    new CapabilitiesFactory());
+            registry.put(XmlCapabilitiesFactory.class, new XmlCapabilitiesFactory());
+        }
     }
 
-    @Override
-    public CapabilitiesFactory supply() {
+    public static CapabilitiesFactory supply() {
         switch(System.getProperty("capabilities", "default")) {
             default:
             case "default":

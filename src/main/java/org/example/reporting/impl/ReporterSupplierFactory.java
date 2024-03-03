@@ -10,8 +10,8 @@ import org.example.reporting.impl.extent.ExtentReporter;
 import org.example.reporting.impl.extent.ExtentReporterSupplier;
 import org.example.IFactory;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * In the event that we have to utilize a different reporting engine for the client, we can
@@ -21,12 +21,15 @@ import java.util.Map;
  */
 public class ReporterSupplierFactory implements IFactory<ISupplier<? extends IReporter>, Class<?>> {
 
-    private final Map<Class<?>, ISupplier<? extends IReporter>> registry = new HashMap<>();
-    private final Logger                                        logger   = LogManager.getLogger();
+    private static Map<Class<?>, ISupplier<? extends IReporter>> registry;
+    private static Logger                                        logger   = LogManager.getLogger();
 
     public ReporterSupplierFactory(){
-        registry.put(DisabledReporter.class, new DisabledReporterSupplier());
-        registry.put(ExtentReporter.class,   new ExtentReporterSupplier());
+        if(registry == null || registry.isEmpty()) {
+            registry = new ConcurrentHashMap<>();
+            registry.put(DisabledReporter.class, new DisabledReporterSupplier());
+            registry.put(ExtentReporter.class,   new ExtentReporterSupplier());
+        }
     }
 
     public ISupplier<? extends IReporter> create() {

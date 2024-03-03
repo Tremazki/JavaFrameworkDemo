@@ -21,7 +21,7 @@ public class WebDriverFactory {
     protected CapabilitiesFactory capabilitiesFactory;
 
     public WebDriverFactory() throws URISyntaxException {
-        this(new CapabilitiesFactorySupplier().supply());
+        this(CapabilitiesFactorySupplier.supply());
     }
 
     public WebDriverFactory(CapabilitiesFactory capabilitiesFactory) {
