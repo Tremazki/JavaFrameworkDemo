@@ -30,6 +30,7 @@
               <option value="-Dremote=false" />
               <option value="-Dbrowser=edge" />
               <option value="-Dreporter=extent" />
+              <option value="-Dcapabilities=default" />
             </list>
           </option>
           <option name="pomFileName" />

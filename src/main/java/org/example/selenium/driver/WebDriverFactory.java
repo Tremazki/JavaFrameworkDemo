@@ -1,8 +1,8 @@
 package org.example.selenium.driver;
 
+import org.example.selenium.capabilities.CapabilitiesFactorySupplier;
 import org.example.selenium.capabilities.exceptions.CapabilitiesCreationException;
 import org.example.selenium.capabilities.CapabilitiesFactory;
-import org.example.selenium.capabilities.xml.XmlCapabilitiesFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -21,8 +21,7 @@ public class WebDriverFactory {
     protected CapabilitiesFactory capabilitiesFactory;
 
     public WebDriverFactory() throws URISyntaxException {
-        this(new XmlCapabilitiesFactory("capabilities"));
-//        this(new CapabilitiesFactory());
+        this(new CapabilitiesFactorySupplier().supply());
     }
 
     public WebDriverFactory(CapabilitiesFactory capabilitiesFactory) {

@@ -12,12 +12,19 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Objects;
 
+/**
+ * XmlCapabilitiesFactory will use XML files defined in a location (Default: src/test/resources/capabilities)
+ * to create and return the browser options.
+ * <br>
+ * Alternatively, you can provide your own folder using the xmlCapabilities system property.
+ * i.e. -DxmlCapabilities="myNewCapabilitiesFolder"
+ */
 public class XmlCapabilitiesFactory extends CapabilitiesFactory {
 
     private final File xmlFileFolder;
 
-    public XmlCapabilitiesFactory(String xmlResourcesFolder) throws URISyntaxException {
-        this.xmlFileFolder = getResourcesFolder(xmlResourcesFolder);
+    public XmlCapabilitiesFactory() throws URISyntaxException {
+        xmlFileFolder = getResourcesFolder(System.getProperty("capabilitiesFolder", "capabilities"));
     }
 
     public Capabilities create() throws CapabilitiesCreationException {
