@@ -65,9 +65,6 @@ public abstract class XmlCapabilitiesParser<T extends AbstractDriverOptions<?>> 
            throw new FileNotFoundException(String.format("Failed to locate the XML file to be parsed: [%s]", file.getPath()));
         }
 
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
-
         DocumentBuilder builder  = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         Document        document = builder.parse(file);
 
