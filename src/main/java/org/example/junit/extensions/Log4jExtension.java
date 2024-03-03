@@ -9,7 +9,6 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 
 import java.util.Optional;
 
-
 public class Log4jExtension implements BeforeEachCallback, BeforeAllCallback, AfterEachCallback {
 
     protected Logger log;

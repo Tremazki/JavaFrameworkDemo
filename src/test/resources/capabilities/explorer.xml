@@ -1,0 +1,10 @@
+<xmlcapabilities name="explorer">
+    <pageloadstrategy>normal</pageloadstrategy>
+    <acceptinsecurecerts>false</acceptinsecurecerts>
+    <capabilities>
+        <capability>
+            <key>app.update.enabled</key>
+            <value>false</value>
+        </capability>
+    </capabilities>
+</xmlcapabilities>

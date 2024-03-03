@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run Cucumber Tests" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="Debug JUnit Tests" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings" />
       <option name="myRunnerSettings">
@@ -25,10 +25,12 @@
           </option>
           <option name="goals">
             <list>
+              <option value="clean" />
               <option value="test" />
-              <option value="-Pjunit-cucumber" />
               <option value="-Dremote=false" />
               <option value="-Dbrowser=edge" />
+              <option value="-Dreporter=extent" />
+              <option value="-Dmaven.surefire.debug" />
             </list>
           </option>
           <option name="pomFileName" />

@@ -1,0 +1,13 @@
+<xmlcapabilities name="chrome">
+    <pageloadstrategy>normal</pageloadstrategy>
+    <acceptinsecurecerts>false</acceptinsecurecerts>
+    <arguments>
+        <argument>headless</argument>
+    </arguments>
+    <capabilities>
+        <capability>
+            <key>app.update.enabled</key>
+            <value>false</value>
+        </capability>
+    </capabilities>
+</xmlcapabilities>

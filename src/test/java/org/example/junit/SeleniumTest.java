@@ -23,7 +23,9 @@ public class SeleniumTest extends ReportedTest {
 
     @AfterEach
     void teardownDriver() {
-        driver.close();
-        driver.quit();
+        if(driver != null) {
+            driver.close();
+            driver.quit();
+        }
     }
 }

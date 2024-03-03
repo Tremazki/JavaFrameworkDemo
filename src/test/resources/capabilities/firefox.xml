@@ -1,0 +1,19 @@
+<xmlcapabilities name="firefox">
+    <pageloadstrategy>normal</pageloadstrategy>
+    <acceptinsecurecerts>false</acceptinsecurecerts>
+    <arguments>
+        <argument>-headless</argument>
+    </arguments>
+    <preferences>
+        <preference>
+            <key>app.update.enabled</key>
+            <value>false</value>
+        </preference>
+    </preferences>
+    <capabilities>
+        <capability>
+            <key>app.update.enabled</key>
+            <value>false</value>
+        </capability>
+    </capabilities>
+</xmlcapabilities>

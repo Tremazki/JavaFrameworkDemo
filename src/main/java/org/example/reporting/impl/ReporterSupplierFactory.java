@@ -31,8 +31,8 @@ public class ReporterSupplierFactory implements IFactory<ISupplier<? extends IRe
 
     public ISupplier<? extends IReporter> create() {
         String property = System.getProperty("reporter", "extent");
-        logger.info(String.format(
-                "The default reporter supplier is extent report. \n " +
+        logger.debug(String.format(
+                "The default reporter supplier is extent report. " +
                 "To specify an alternative, use the 'reporter' system property when executing the framework. \n " +
                 "Valid values include: {'extent', 'disabled'} \n " +
                 "Found the value: [%s]", property));

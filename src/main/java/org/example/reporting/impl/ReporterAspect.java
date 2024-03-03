@@ -14,7 +14,6 @@ public class ReporterAspect {
 
     private final IReporter reporter;
 
-    //Temporary variables
     private boolean         screenshotFail  = false;
     private boolean         screenshotPass  = false;
     private boolean         reportArguments = false;

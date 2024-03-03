@@ -1,6 +1,8 @@
-package org.example.selenium.driver.impl;
+package org.example.selenium.driver;
 
 import org.example.IFactory;
+import org.example.selenium.capabilities.exceptions.CapabilitiesCreationException;
+import org.example.selenium.capabilities.CapabilitiesFactory;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,7 +21,7 @@ public class LocalDriverFactory implements IFactory<WebDriver, String> {
     private final String       browser;
     private final Capabilities capabilities;
 
-    LocalDriverFactory(IFactory<? extends Capabilities, String> capabilitiesFactory) {
+    LocalDriverFactory(CapabilitiesFactory capabilitiesFactory) throws CapabilitiesCreationException {
         assert System.getProperty("browser") != null : "Java system property: 'browser' was null - unable to create a local driver instance";
         this.browser      = System.getProperty("browser");
         this.capabilities = capabilitiesFactory.create();

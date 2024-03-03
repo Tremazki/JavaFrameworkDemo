@@ -1,0 +1,7 @@
+<xmlcapabilities name="edge">
+    <pageloadstrategy>normal</pageloadstrategy>
+    <acceptinsecurecerts>false</acceptinsecurecerts>
+    <arguments>
+        <argument>headless</argument>
+    </arguments>
+</xmlcapabilities>

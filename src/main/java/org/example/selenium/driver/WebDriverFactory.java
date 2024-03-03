@@ -1,7 +1,8 @@
-package org.example.selenium.driver.impl;
+package org.example.selenium.driver;
 
-import org.example.IFactory;
-import org.openqa.selenium.Capabilities;
+import org.example.selenium.capabilities.exceptions.CapabilitiesCreationException;
+import org.example.selenium.capabilities.CapabilitiesFactory;
+import org.example.selenium.capabilities.xml.XmlCapabilitiesFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -15,15 +16,16 @@ import java.net.URISyntaxException;
  */
 public class WebDriverFactory {
 
-    protected boolean                                  remote;
-    protected String                                   grid;
-    protected IFactory<? extends Capabilities, String> capabilitiesFactory;
+    protected boolean             remote;
+    protected String              grid;
+    protected CapabilitiesFactory capabilitiesFactory;
 
-    public WebDriverFactory() {
-        this(new DefaultCapabilitiesFactory());
+    public WebDriverFactory() throws URISyntaxException {
+        this(new XmlCapabilitiesFactory("capabilities"));
+//        this(new CapabilitiesFactory());
     }
 
-    public WebDriverFactory(IFactory<? extends Capabilities, String> capabilitiesFactory) {
+    public WebDriverFactory(CapabilitiesFactory capabilitiesFactory) {
        this.remote              = Boolean.parseBoolean(System.getProperty("remote", "false"));
        this.grid                = System.getProperty("grid", "http://localhost:4444");
        this.capabilitiesFactory = capabilitiesFactory;
@@ -40,7 +42,7 @@ public class WebDriverFactory {
      * @throws URISyntaxException
      * @throws MalformedURLException
      */
-    public WebDriver create() throws URISyntaxException, MalformedURLException {
+    public WebDriver create() throws URISyntaxException, MalformedURLException, CapabilitiesCreationException {
         if (remote) {
             return new RemoteWebDriver(new URI(grid).toURL(), capabilitiesFactory.create());
         } else {

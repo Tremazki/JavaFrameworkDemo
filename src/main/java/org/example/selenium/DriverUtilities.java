@@ -1,6 +1,7 @@
 package org.example.selenium;
 
-import org.example.selenium.driver.impl.WebDriverFactory;
+import org.example.selenium.capabilities.exceptions.CapabilitiesCreationException;
+import org.example.selenium.driver.WebDriverFactory;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
@@ -16,7 +17,7 @@ public class DriverUtilities {
      * @throws MalformedURLException
      * @throws URISyntaxException
      */
-    public static WebDriver createDefaultDriver() throws MalformedURLException, URISyntaxException {
+    public static WebDriver createDefaultDriver() throws MalformedURLException, URISyntaxException, CapabilitiesCreationException {
         // Create the driver and set up the default resolution
         WebDriver driver = new WebDriverFactory().create();
         driver.manage().window().setSize(new Dimension(1920, 1080));
