@@ -3,7 +3,6 @@ package org.example.stepdefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.example.selenium.DriverUtilities;
-import org.example.selenium.capabilities.exceptions.CapabilitiesCreationException;
 import org.openqa.selenium.WebDriver;
 
 import java.net.MalformedURLException;
@@ -18,7 +17,7 @@ public class CucumberSteps {
     protected WebDriver driver;
 
     @Given("(the user )opens the browser")
-    public void openBrowser() throws MalformedURLException, URISyntaxException, CapabilitiesCreationException {
+    public void openBrowser() throws MalformedURLException, URISyntaxException {
         driver = DriverUtilities.createDefaultDriver();
     }
 

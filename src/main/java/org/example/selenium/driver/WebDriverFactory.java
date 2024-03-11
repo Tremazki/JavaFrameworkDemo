@@ -1,8 +1,7 @@
 package org.example.selenium.driver;
 
 import org.example.selenium.capabilities.CapabilitiesFactorySupplier;
-import org.example.selenium.capabilities.exceptions.CapabilitiesCreationException;
-import org.example.selenium.capabilities.CapabilitiesFactory;
+import org.example.selenium.capabilities.impl.DefaultCapabilitiesFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -18,13 +17,13 @@ public class WebDriverFactory {
 
     protected boolean             remote;
     protected String              grid;
-    protected CapabilitiesFactory capabilitiesFactory;
+    protected DefaultCapabilitiesFactory capabilitiesFactory;
 
-    public WebDriverFactory() throws URISyntaxException {
-        this(CapabilitiesFactorySupplier.supply());
+    public WebDriverFactory() {
+        this(new CapabilitiesFactorySupplier().supply());
     }
 
-    public WebDriverFactory(CapabilitiesFactory capabilitiesFactory) {
+    public WebDriverFactory(DefaultCapabilitiesFactory capabilitiesFactory) {
        this.remote              = Boolean.parseBoolean(System.getProperty("remote", "false"));
        this.grid                = System.getProperty("grid", "http://localhost:4444");
        this.capabilitiesFactory = capabilitiesFactory;
@@ -41,7 +40,7 @@ public class WebDriverFactory {
      * @throws URISyntaxException
      * @throws MalformedURLException
      */
-    public WebDriver create() throws URISyntaxException, MalformedURLException, CapabilitiesCreationException {
+    public WebDriver create() throws URISyntaxException, MalformedURLException {
         if (remote) {
             return new RemoteWebDriver(new URI(grid).toURL(), capabilitiesFactory.create());
         } else {

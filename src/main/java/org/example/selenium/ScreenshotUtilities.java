@@ -26,7 +26,7 @@ public class ScreenshotUtilities {
      * state of the given WebDriver instance
      * @throws IOException IOException if the file can not be copied successfully
      */
-    public static String takeScreenShotFile() throws IOException {
+    public static String takeScreenShotAsFile() throws IOException {
         return takeScreenShotAsFile(driver);
     }
 

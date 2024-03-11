@@ -1,11 +1,7 @@
-package org.example.selenium.capabilities.xml.parsers;
+package org.example.selenium.capabilities.impl.xml.parsers;
 
 import org.openqa.selenium.ie.InternetExplorerOptions;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.io.IOException;
 
 public class XmlInternetExplorerOptionsParser extends XmlCapabilitiesParser<InternetExplorerOptions> {
 
@@ -15,7 +11,7 @@ public class XmlInternetExplorerOptionsParser extends XmlCapabilitiesParser<Inte
     }
 
     @Override
-    public InternetExplorerOptions create(File file) throws ParserConfigurationException, IOException, SAXException {
+    public InternetExplorerOptions create(File file) {
         parseXml(file);
         options.setPageLoadStrategy(pageLoadStrategy);
         options.setAcceptInsecureCerts(acceptInsecureCerts);

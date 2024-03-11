@@ -1,10 +1,13 @@
 package org.example.selenium.capabilities;
 
-import org.example.ISupplier;
-import org.example.selenium.capabilities.xml.XmlCapabilitiesFactory;
+import dorkbox.annotation.AnnotationDefaults;
+import dorkbox.annotation.AnnotationDetector;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.example.selenium.capabilities.impl.DefaultCapabilitiesFactory;
 
-import java.net.URISyntaxException;
-import java.util.HashMap;
+import java.lang.annotation.ElementType;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,23 +18,45 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class CapabilitiesFactorySupplier {
 
-    private static Map<Class<?>, CapabilitiesFactory> registry;
+    private static final Logger logger = LogManager.getLogger();
 
-    public CapabilitiesFactorySupplier() throws URISyntaxException {
+    private static Map<String, DefaultCapabilitiesFactory> registry;
+
+    public CapabilitiesFactorySupplier() {
         if(registry == null || registry.isEmpty()) {
             registry = new ConcurrentHashMap<>();
-            registry.put(CapabilitiesFactory.class,    new CapabilitiesFactory());
-            registry.put(XmlCapabilitiesFactory.class, new XmlCapabilitiesFactory());
+            detectCapabilitiesFactories();
         }
     }
 
-    public static CapabilitiesFactory supply() {
-        switch(System.getProperty("capabilities", "default")) {
-            default:
-            case "default":
-                return registry.get(CapabilitiesFactory.class);
-            case "xml":
-                return registry.get(XmlCapabilitiesFactory.class);
+    public DefaultCapabilitiesFactory supply() {
+        String property = System.getProperty("capabilities", "default");
+        logger.debug(String.format(
+                "The default capabilities supplier is an empty options provider. " +
+                "To specify an alternative, use the 'capabilities' system property when executing the framework. \n " +
+                "Valid values include: {'default', 'xml'} \n " +
+                "Found the value: [%s]", property));
+        return registry.get(property.toUpperCase());
+    }
+
+    @SuppressWarnings("unchecked")
+    private void detectCapabilitiesFactories() {
+        try {
+            List<Class<?>> classModules = AnnotationDetector
+                    .scanClassPath("org.example")
+                    .forAnnotations(org.example.annotations.CapabilitiesFactory.class)
+                    .on(ElementType.TYPE)
+                    .collect(AnnotationDefaults.getType);
+
+            for (Class<?> clazz : classModules) {
+                logger.debug(String.format("Creating an instance of the class [%s] and registering it to the capabilities factory..", clazz.getSimpleName()));
+                registry.put(
+                        clazz.getDeclaredAnnotation(org.example.annotations.CapabilitiesFactory.class).value().toUpperCase(),
+                        (DefaultCapabilitiesFactory) clazz.getConstructor().newInstance()
+                );
+            }
+        } catch (Exception e) {
+            logger.error("An error occurred while finding classes annotation with the ReporterFactory annotation", e);
         }
     }
 }

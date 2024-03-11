@@ -1,11 +1,7 @@
-package org.example.selenium.capabilities.xml.parsers;
+package org.example.selenium.capabilities.impl.xml.parsers;
 
 import org.openqa.selenium.edge.EdgeOptions;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.io.IOException;
 
 public class XmlEdgeOptionsParser extends XmlCapabilitiesParser<EdgeOptions> {
 
@@ -15,7 +11,7 @@ public class XmlEdgeOptionsParser extends XmlCapabilitiesParser<EdgeOptions> {
     }
 
     @Override
-    public EdgeOptions create(File file) throws ParserConfigurationException, IOException, SAXException {
+    public EdgeOptions create(File file)  {
         parseXml(file);
         options.addArguments(arguments);
         options.setPageLoadStrategy(pageLoadStrategy);

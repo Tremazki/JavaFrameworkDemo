@@ -158,6 +158,12 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>com.dorkbox</groupId>
+      <artifactId>Annotations</artifactId>
+      <version>3.2</version>
+    </dependency>
+
   </dependencies>
 
 

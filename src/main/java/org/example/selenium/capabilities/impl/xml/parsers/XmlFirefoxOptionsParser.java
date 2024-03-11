@@ -1,10 +1,7 @@
-package org.example.selenium.capabilities.xml.parsers;
+package org.example.selenium.capabilities.impl.xml.parsers;
 
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.xml.sax.SAXException;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.io.IOException;
 
 public class XmlFirefoxOptionsParser extends XmlCapabilitiesParser<FirefoxOptions> {
 
@@ -14,15 +11,15 @@ public class XmlFirefoxOptionsParser extends XmlCapabilitiesParser<FirefoxOption
     }
 
     @Override
-    public FirefoxOptions create(File file) throws ParserConfigurationException, IOException, SAXException {
+    public FirefoxOptions create(File file) {
         parseXml(file);
         options.addArguments(arguments);
         options.setPageLoadStrategy(pageLoadStrategy);
         options.setAcceptInsecureCerts(acceptInsecureCerts);
-        for(String key : preferences.keySet()) {
+        for (String key : preferences.keySet()) {
             options.addPreference(key, preferences.get(key));
         }
-        for(String key : capabilities.keySet()) {
+        for (String key : capabilities.keySet()) {
             options.setCapability(key, capabilities.get(key));
         }
         return options;

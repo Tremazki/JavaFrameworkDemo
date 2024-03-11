@@ -1,4 +1,4 @@
-package org.example.selenium.capabilities.xml.parsers;
+package org.example.selenium.capabilities.impl.xml.parsers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -56,45 +56,42 @@ public abstract class XmlCapabilitiesParser<T extends AbstractDriverOptions<?>> 
      * Can be improved upon in the future if need be.
      *
      * @param file
-     * @throws ParserConfigurationException
-     * @throws IOException
-     * @throws SAXException
      */
-    protected void parseXml(File file) throws ParserConfigurationException, IOException, SAXException {
-        if(!file.exists()) {
-           throw new FileNotFoundException(String.format("Failed to locate the XML file to be parsed: [%s]", file.getPath()));
-        }
+    protected void parseXml(File file) {
+       try {
+           DocumentBuilder builder  = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+           Document        document = builder.parse(file);
 
-        DocumentBuilder builder  = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document        document = builder.parse(file);
+           document.getDocumentElement().normalize();
 
-        document.getDocumentElement().normalize();
+           NodeList arguments = document.getElementsByTagName("argument");
+           for (int i = 0; i < arguments.getLength(); i++) {
+               this.arguments.add(arguments.item(i).getTextContent());
+           }
 
-        NodeList arguments = document.getElementsByTagName("argument");
-        for (int i = 0; i < arguments.getLength(); i++) {
-            this.arguments.add(arguments.item(i).getTextContent());
-        }
+           NodeList preferences = document.getElementsByTagName("preference");
+           for (int i = 0; i < preferences.getLength(); i++) {
+               this.preferences.put(preferences.item(i).getFirstChild().getTextContent(),
+                       preferences.item(i).getLastChild().getTextContent());
+           }
 
-        NodeList preferences = document.getElementsByTagName("preference");
-        for (int i = 0; i < preferences.getLength(); i++) {
-            this.preferences.put(preferences.item(i).getFirstChild().getTextContent(),
-                                 preferences.item(i).getLastChild().getTextContent());
-        }
+           NodeList capabilities = document.getElementsByTagName("capability");
+           for (int i = 0; i < capabilities.getLength(); i++) {
+               this.capabilities.put(capabilities.item(i).getFirstChild().getTextContent(),
+                       capabilities.item(i).getLastChild().getTextContent());
+           }
 
-        NodeList capabilities = document.getElementsByTagName("capability");
-        for (int i = 0; i < capabilities.getLength(); i++) {
-            this.capabilities.put(capabilities.item(i).getFirstChild().getTextContent(),
-                                  capabilities.item(i).getLastChild().getTextContent());
-        }
+           NodeList pageLoadStrategy = document.getElementsByTagName("pageloadstrategy");
+           if (pageLoadStrategy.getLength() > 0) {
+               this.pageLoadStrategy = PageLoadStrategy.valueOf(pageLoadStrategy.item(0).getTextContent().toUpperCase());
+           }
 
-        NodeList pageLoadStrategy = document.getElementsByTagName("pageloadstrategy");
-        if(pageLoadStrategy.getLength() > 0) {
-            this.pageLoadStrategy = PageLoadStrategy.valueOf(pageLoadStrategy.item(0).getTextContent().toUpperCase());
-        }
-
-        NodeList acceptInsecureCerts = document.getElementsByTagName("acceptinsecurecerts");
-        if(acceptInsecureCerts.getLength() > 0) {
-            this.acceptInsecureCerts = Boolean.parseBoolean(acceptInsecureCerts.item(0).getTextContent());
-        }
+           NodeList acceptInsecureCerts = document.getElementsByTagName("acceptinsecurecerts");
+           if (acceptInsecureCerts.getLength() > 0) {
+               this.acceptInsecureCerts = Boolean.parseBoolean(acceptInsecureCerts.item(0).getTextContent());
+           }
+       } catch (Exception e) {
+           log.error("An error occurred while parsing the XML file: ", e);
+       }
     }
 }

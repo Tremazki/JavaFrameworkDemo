@@ -3,14 +3,14 @@ package org.example.cucumber;
 import io.cucumber.plugin.EventListener;
 import io.cucumber.plugin.event.*;
 import org.example.reporting.IReporter;
-import org.example.reporting.impl.ReporterSupplierFactory;
+import org.example.reporting.impl.ReporterFactorySupplier;
 
 public class CucumberReportListener implements EventListener {
 
     private final IReporter reporter;
 
     public CucumberReportListener() {
-        reporter = new ReporterSupplierFactory().create().supply();
+        reporter = new ReporterFactorySupplier().supply().create();
     }
 
     @Override

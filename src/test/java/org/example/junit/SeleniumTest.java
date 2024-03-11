@@ -17,7 +17,7 @@ public class SeleniumTest extends ReportedTest {
     }
 
     @BeforeEach
-    void setupDriver() throws Throwable {
+    void setupDriver() throws Exception {
         driver = DriverUtilities.createDefaultDriver();
     }
 
