@@ -3,7 +3,7 @@ package org.example.cucumber;
 import io.cucumber.plugin.EventListener;
 import io.cucumber.plugin.event.*;
 import org.example.reporting.IReporter;
-import org.example.reporting.impl.ReporterFactorySupplier;
+import org.example.reporting.ReporterFactorySupplier;
 
 public class CucumberReportListener implements EventListener {
 

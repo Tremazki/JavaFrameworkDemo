@@ -1,4 +1,4 @@
-package org.example.reporting.impl;
+package org.example.reporting;
 
 import dorkbox.annotation.AnnotationDefaults;
 import dorkbox.annotation.AnnotationDetector;

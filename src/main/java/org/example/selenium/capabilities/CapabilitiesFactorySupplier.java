@@ -4,6 +4,7 @@ import dorkbox.annotation.AnnotationDefaults;
 import dorkbox.annotation.AnnotationDetector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.annotations.CapabilitiesFactory;
 import org.example.selenium.capabilities.impl.DefaultCapabilitiesFactory;
 
 import java.lang.annotation.ElementType;
@@ -44,14 +45,14 @@ public final class CapabilitiesFactorySupplier {
         try {
             List<Class<?>> classModules = AnnotationDetector
                     .scanClassPath("org.example")
-                    .forAnnotations(org.example.annotations.CapabilitiesFactory.class)
+                    .forAnnotations(CapabilitiesFactory.class)
                     .on(ElementType.TYPE)
                     .collect(AnnotationDefaults.getType);
 
             for (Class<?> clazz : classModules) {
                 logger.debug(String.format("Creating an instance of the class [%s] and registering it to the capabilities factory..", clazz.getSimpleName()));
                 registry.put(
-                        clazz.getDeclaredAnnotation(org.example.annotations.CapabilitiesFactory.class).value().toUpperCase(),
+                        clazz.getDeclaredAnnotation(CapabilitiesFactory.class).value().toUpperCase(),
                         (DefaultCapabilitiesFactory) clazz.getConstructor().newInstance()
                 );
             }

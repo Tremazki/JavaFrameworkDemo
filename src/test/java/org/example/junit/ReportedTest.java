@@ -1,7 +1,7 @@
 package org.example.junit;
 
 import org.example.reporting.IReporter;
-import org.example.reporting.impl.ReporterFactorySupplier;
+import org.example.reporting.ReporterFactorySupplier;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;

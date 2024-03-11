@@ -4,8 +4,8 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.example.reporting.IReporter;
-import org.example.reporting.TestStep;
-import org.example.reporting.impl.ReporterFactorySupplier;
+import org.example.annotations.TestStep;
+import org.example.reporting.ReporterFactorySupplier;
 import org.example.selenium.ScreenshotUtilities;
 
 import java.lang.reflect.Method;
@@ -25,7 +25,7 @@ public class ReporterAspect {
        reporter = new ReporterFactorySupplier().supply().create();
     }
 
-    @Pointcut("execution(@org.example.reporting.TestStep * *(..))")
+    @Pointcut("execution(@org.example.annotations.TestStep * *(..))")
     public void testStepPointCut() {}
 
     @Before("testStepPointCut() && !cflowbelow(testStepPointCut())")

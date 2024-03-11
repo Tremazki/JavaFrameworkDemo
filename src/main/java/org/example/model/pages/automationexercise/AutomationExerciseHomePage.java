@@ -1,6 +1,6 @@
 package org.example.model.pages.automationexercise;
 
-import org.example.reporting.TestStep;
+import org.example.annotations.TestStep;
 import org.example.model.pages.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
