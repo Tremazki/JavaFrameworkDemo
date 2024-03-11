@@ -1,7 +1,8 @@
 package org.example.selenium.driver;
 
+import org.example.IFactory;
 import org.example.selenium.capabilities.CapabilitiesFactorySupplier;
-import org.example.selenium.capabilities.impl.DefaultCapabilitiesFactory;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -15,15 +16,15 @@ import java.net.URISyntaxException;
  */
 public class WebDriverFactory {
 
-    protected boolean             remote;
-    protected String              grid;
-    protected DefaultCapabilitiesFactory capabilitiesFactory;
+    protected boolean                   remote;
+    protected String                    grid;
+    protected IFactory<Capabilities, ?> capabilitiesFactory;
 
     public WebDriverFactory() {
         this(new CapabilitiesFactorySupplier().supply());
     }
 
-    public WebDriverFactory(DefaultCapabilitiesFactory capabilitiesFactory) {
+    public WebDriverFactory(IFactory<Capabilities, ?> capabilitiesFactory) {
        this.remote              = Boolean.parseBoolean(System.getProperty("remote", "false"));
        this.grid                = System.getProperty("grid", "http://localhost:4444");
        this.capabilitiesFactory = capabilitiesFactory;

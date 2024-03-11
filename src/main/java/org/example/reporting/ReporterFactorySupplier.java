@@ -27,9 +27,13 @@ public class ReporterFactorySupplier implements ISupplier<IFactory<? extends IRe
     private static Map<String, IFactory<? extends IReporter, String>> registry;
 
     public ReporterFactorySupplier() {
+        this("org.example");
+    }
+
+    public ReporterFactorySupplier(String classPath) {
         if(registry == null || registry.isEmpty()) {
             registry = new ConcurrentHashMap<>();
-            detectReporterFactories();
+            detectReporterFactories(classPath);
         }
     }
 
@@ -55,10 +59,10 @@ public class ReporterFactorySupplier implements ISupplier<IFactory<? extends IRe
     }
 
     @SuppressWarnings("unchecked")
-    private void detectReporterFactories() {
+    private void detectReporterFactories(String classPath) {
         try {
             List<Class<?>> classModules = AnnotationDetector
-                    .scanClassPath("org.example")
+                    .scanClassPath(classPath)
                     .forAnnotations(ReporterFactory.class)
                     .on(ElementType.TYPE)
                     .collect(AnnotationDefaults.getType);
