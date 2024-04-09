@@ -1,4 +1,4 @@
-package org.example.annotations;
+package org.example.annotations.reporting;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,9 +7,5 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface TestStep {
-    String  value();
-    boolean reportArguments() default false;
-    boolean screenshotPass()  default false;
-    boolean screenshotFail()  default true;
+public @interface ScreenshotOnPass {
 }

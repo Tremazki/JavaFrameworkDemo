@@ -18,6 +18,9 @@ public class DisabledReporter implements IReporter {
     public void passStep(String _details) {}
 
     @Override
+    public void infoStep(String _details) {}
+
+    @Override
     public void failStep(String _details) {}
 
     @Override

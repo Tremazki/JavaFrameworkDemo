@@ -8,8 +8,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class GoogleSearchTest extends SeleniumTest {
 
-    @DisplayName("Test Google Search Functionality")
     @ParameterizedTest
+    @DisplayName("Test Google Search Functionality")
     @ValueSource(strings = {"Test", "Automation"})
     void testGoogleSearch(String searchTerm) {
         GoogleHomePage home = new GoogleHomePage(driver).get();

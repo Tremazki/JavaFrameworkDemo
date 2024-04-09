@@ -9,32 +9,38 @@ public class ExtentReporter implements IReporter {
 
     private final ExtentReports extent;
 
-    private ExtentTest extentTest;
-    private ExtentTest node;
+    private final ThreadLocal<ExtentTest> extentTest;
+    private final ThreadLocal<ExtentTest> node;
 
     public ExtentReporter(String _reportName) {
-        extent = new ExtentReports();
+        extent     = new ExtentReports();
+        extentTest = new ThreadLocal<>();
+        node       = new ThreadLocal<>();
         extent.attachReporter(new ExtentSparkReporter(_reportName));
     }
 
     public void startTest(String _name) {
-        extentTest = extent.createTest(_name);
+        extentTest.set(extent.createTest(_name));
     }
 
     public void beginStep(String _step) {
-        node = extentTest.createNode(_step);
+        node.set(extentTest.get().createNode(_step));
     }
 
     public void passStep(String _details) {
-        node.pass(_details);
+        node.get().pass(_details);
+    }
+
+    public void infoStep(String _details) {
+        node.get().info(_details);
     }
 
     public void failStep(String _details) {
-        node.fail(_details);
+        node.get().fail(_details);
     }
 
     public void embedImage(String _base64) {
-        node.addScreenCaptureFromBase64String(_base64);
+        node.get().addScreenCaptureFromBase64String(_base64);
     }
 
     public void write() {

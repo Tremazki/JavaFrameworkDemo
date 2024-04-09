@@ -32,7 +32,7 @@
       <properties>
         <test-classes>**/org.example.junit.runner.JUnitTestRunner.java</test-classes>
         <configurationParameters>
-          junit.jupiter.execution.parallel.enabled               = false
+          junit.jupiter.execution.parallel.enabled               = true
           junit.jupiter.execution.parallel.mode.default          = same_thread
           junit.jupiter.execution.parallel.mode.classes.default  = concurrent
           junit.jupiter.extensions.autodetection.enabled         = true
@@ -92,6 +92,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-params</artifactId>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.platform</groupId>

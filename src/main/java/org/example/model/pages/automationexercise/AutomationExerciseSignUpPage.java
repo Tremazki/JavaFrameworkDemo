@@ -1,7 +1,7 @@
 package org.example.model.pages.automationexercise;
 
 import org.example.model.pages.Page;
-import org.example.annotations.TestStep;
+import org.example.annotations.reporting.TestStep;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -53,6 +53,6 @@ public class AutomationExerciseSignUpPage extends Page<AutomationExerciseSignUpP
 
     @TestStep(value = "The user begins the registration process")
     public void startRegistration() {
-
+        System.out.println("TEST");
     }
 }

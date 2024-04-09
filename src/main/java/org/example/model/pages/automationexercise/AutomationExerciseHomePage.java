@@ -1,6 +1,7 @@
 package org.example.model.pages.automationexercise;
 
-import org.example.annotations.TestStep;
+import org.example.annotations.reporting.ScreenshotOnFail;
+import org.example.annotations.reporting.TestStep;
 import org.example.model.pages.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,6 +33,7 @@ public class AutomationExerciseHomePage extends Page<AutomationExerciseHomePage>
         assert driver.getTitle().contains("Automation Exercise") : "Failed to assert the user is on the home page";
     }
 
+    @ScreenshotOnFail
     @TestStep("The user clicks on the login link on the home page")
     public void clickLogin(){
         wait.until(ExpectedConditions.visibilityOf(loginLink));

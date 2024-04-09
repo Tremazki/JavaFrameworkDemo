@@ -1,7 +1,7 @@
 package org.example.model.pages.google;
 
 import org.example.model.pages.Page;
-import org.example.annotations.TestStep;
+import org.example.annotations.reporting.TestStep;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
