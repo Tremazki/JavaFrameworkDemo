@@ -1,4 +1,4 @@
-package org.example.model.pages.strategies;
+package org.example.selenium.strategies;
 
 import org.example.reporting.IReporter;
 import org.example.selenium.ExpectedConditionsExtension;
@@ -36,6 +36,26 @@ public abstract class ValidationStrategy {
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
                 assert wait.until(ExpectedConditionsExtension.textEquals(element, text));
                 reporter.passStep(String.format("Successfully validated the element: [%s] had the exact text: [%s]", element, text));
+            }
+        };
+    }
+
+    public static ValidationStrategy attributeContains(String attribute, String text) {
+        return new ValidationStrategy() {
+            public void apply(WebDriver driver, WebElement element) {
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+                assert wait.until(ExpectedConditions.attributeContains(element, attribute, text));
+                reporter.passStep(String.format("Successfully validated the element: [%s] had the attribute: [%s] containing the text: [%s]", element, attribute, text));
+            }
+        };
+    }
+
+    public static ValidationStrategy attributeEquals(String attribute, String text) {
+        return new ValidationStrategy() {
+            public void apply(WebDriver driver, WebElement element) {
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+                assert wait.until(ExpectedConditions.attributeToBe(element, attribute, text));
+                reporter.passStep(String.format("Successfully validated the element: [%s] had the attribute: [%s] with the exact text: [%s]", element, attribute, text));
             }
         };
     }

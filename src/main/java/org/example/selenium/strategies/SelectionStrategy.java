@@ -1,4 +1,4 @@
-package org.example.model.pages.strategies;
+package org.example.selenium.strategies;
 
 import org.openqa.selenium.support.ui.Select;
 
