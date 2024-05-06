@@ -1,4 +1,4 @@
-package org.example.selenium;
+package org.example.selenium.strategies.impl;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,8 +6,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 
 public class ExpectedConditionsExtension {
 
-    public static ExpectedCondition<Boolean> textEquals(final WebElement element, final String value) {
-        return new ExpectedCondition<Boolean>() {
+    public static ExpectedCondition<Boolean> textEqualsInElement(final WebElement element, final String value) {
+        return new ExpectedCondition<>() {
             private String currentValue = null;
 
             public Boolean apply(WebDriver driver) {
@@ -20,7 +20,7 @@ public class ExpectedConditionsExtension {
             }
 
             public String toString() {
-                return String.format("element found by %s to have text \"%s\". Current text: \"%s\"", element , value, this.currentValue);
+                return String.format("element found by %s to have text \"%s\". Current text: \"%s\"", element, value, this.currentValue);
             }
         };
     }

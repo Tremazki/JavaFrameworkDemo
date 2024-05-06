@@ -24,12 +24,12 @@ public class AutomationExerciseHomePage extends Page<AutomationExerciseHomePage>
     }
 
     @Override
-    protected void load() {
+    public void load() {
         driver.get("https://www.automationexercise.com/");
     }
 
     @Override
-    protected void isLoaded() {
+    public void isLoaded() {
         assert driver.getTitle().contains("Automation Exercise") : "Failed to assert the user is on the home page";
     }
 

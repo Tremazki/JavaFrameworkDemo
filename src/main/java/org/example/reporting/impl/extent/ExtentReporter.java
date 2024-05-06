@@ -7,23 +7,26 @@ import org.example.reporting.IReporter;
 
 public class ExtentReporter implements IReporter {
 
-    private final ExtentReports extent;
-
-    private final ThreadLocal<ExtentTest> extentTest;
-    private final ThreadLocal<ExtentTest> node;
+    private ExtentReports           extent;
+    private ThreadLocal<ExtentTest> extentTest;
+    private ThreadLocal<ExtentTest> node;
 
     public ExtentReporter(String _reportName) {
         extent     = new ExtentReports();
-        extentTest = new ThreadLocal<>();
-        node       = new ThreadLocal<>();
         extent.attachReporter(new ExtentSparkReporter(_reportName));
     }
 
     public void startTest(String _name) {
+        if(extentTest == null) {
+            extentTest = new ThreadLocal<>();
+        }
         extentTest.set(extent.createTest(_name));
     }
 
     public void beginStep(String _step) {
+        if(node == null) {
+            node = new ThreadLocal<>();
+        }
         node.set(extentTest.get().createNode(_step));
     }
 

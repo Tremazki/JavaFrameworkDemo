@@ -21,24 +21,24 @@ public class AutomationExerciseSecuredPage<T extends Page<T>> extends Page<T> {
     }
 
     @Override
-    protected void load() {
+    public void load() {
         AutomationExerciseSignUpPage signUpPage = new AutomationExerciseSignUpPage(driver).get();
         signUpPage.submitLoginForm(username, password);
         parent.get();
     }
 
     @Override
-    public T get() {
-        super.get();
-        return (T) parent;
-    }
-
-    @Override
-    protected void isLoaded() {
+    public void isLoaded() {
         try {
             driver.findElement(By.xpath(logoutLocator));
         } catch (NoSuchElementException e ) {
             fail("Failed to locate the logout element");
         }
+    }
+
+    @Override
+    public T get() {
+        super.get();
+        return (T) parent;
     }
 }

@@ -1,7 +1,6 @@
 package org.example.selenium;
 
 import org.example.selenium.driver.WebDriverFactory;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
 import java.net.MalformedURLException;
@@ -29,7 +28,7 @@ public class DriverUtilities {
      * @param driver WebDriver instance
      */
     private static void initializeDefaults(WebDriver driver) {
-        driver.manage().window().setSize(new Dimension(1920, 1080));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().window().fullscreen();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 }

@@ -7,8 +7,9 @@ import org.openqa.selenium.Capabilities;
 
 import java.io.File;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.Objects;
+
+import static org.example.utilities.IOUtilities.findFile;
+import static org.example.utilities.IOUtilities.getResource;
 
 /**
  * XmlCapabilitiesFactory will use XML files defined in a location (Default: src/test/resources/capabilities)
@@ -23,7 +24,7 @@ public class XmlCapabilitiesFactory extends DefaultCapabilitiesFactory {
     private final File xmlFileFolder;
 
     public XmlCapabilitiesFactory() throws URISyntaxException {
-        xmlFileFolder = getResourcesFolder(System.getProperty("capabilitiesFolder", "capabilities"));
+        xmlFileFolder = getResource(System.getProperty("capabilitiesFolder", "capabilities"));
     }
 
     public Capabilities create() {
@@ -34,26 +35,17 @@ public class XmlCapabilitiesFactory extends DefaultCapabilitiesFactory {
     public Capabilities create(String _condition) {
         switch (_condition) {
             case "firefox":
-                return new XmlFirefoxOptionsParser().create(findXmlFile(xmlFileFolder, "firefox.xml"));
+                return new XmlFirefoxOptionsParser().create(findFile(xmlFileFolder, "firefox.xml"));
             case "safari":
-                return new XmlSafariOptionsParser().create(findXmlFile(xmlFileFolder, "safari.xml"));
+                return new XmlSafariOptionsParser().create(findFile(xmlFileFolder, "safari.xml"));
             case "explorer":
-                return new XmlInternetExplorerOptionsParser().create(findXmlFile(xmlFileFolder, "explorer.xml"));
+                return new XmlInternetExplorerOptionsParser().create(findFile(xmlFileFolder, "explorer.xml"));
             case "chrome":
-                return new XmlChromeOptionsParser().create(findXmlFile(xmlFileFolder, "chrome.xml"));
+                return new XmlChromeOptionsParser().create(findFile(xmlFileFolder, "chrome.xml"));
             case "edge":
             default:
-                return new XmlEdgeOptionsParser().create(findXmlFile(xmlFileFolder, "edge.xml"));
+                return new XmlEdgeOptionsParser().create(findFile(xmlFileFolder, "edge.xml"));
         }
     }
 
-    private File findXmlFile(File folder, String fileName) {
-        File[] filteredFiles = folder.listFiles((dir, name) -> name.equals(fileName));
-        return Objects.requireNonNull(filteredFiles)[0];
-    }
-
-    private File getResourcesFolder(String folderName) throws URISyntaxException {
-        URL url = getClass().getClassLoader().getResource(folderName);
-        return new File(Objects.requireNonNull(url).toURI());
-    }
 }

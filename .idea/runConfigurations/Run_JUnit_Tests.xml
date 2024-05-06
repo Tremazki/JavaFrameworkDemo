@@ -31,6 +31,7 @@
               <option value="-Dbrowser=edge" />
               <option value="-Dreporter=extent" />
               <option value="-Dcapabilities=default" />
+              <option value="-Denvironment=default" />
             </list>
           </option>
           <option name="pomFileName" />

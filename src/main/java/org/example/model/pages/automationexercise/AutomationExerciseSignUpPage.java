@@ -35,12 +35,12 @@ public class AutomationExerciseSignUpPage extends Page<AutomationExerciseSignUpP
     }
 
     @Override
-    protected void load() {
+    public void load() {
         driver.get("https://www.automationexercise.com/login");
     }
 
     @Override
-    protected void isLoaded() {
+    public void isLoaded() {
         assert driver.getTitle().contains("Signup / Login");
     }
 
@@ -53,6 +53,5 @@ public class AutomationExerciseSignUpPage extends Page<AutomationExerciseSignUpP
 
     @TestStep(value = "The user begins the registration process")
     public void startRegistration() {
-        System.out.println("TEST");
     }
 }

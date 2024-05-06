@@ -8,12 +8,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 
 @ExtendWith(Log4jExtension.class)
-public class SeleniumTest extends ReportedTest {
+public class SeleniumTest extends BaseTest {
 
-    protected WebDriver driver;
+    protected WebDriver  driver;
 
     public SeleniumTest() {
         super();
+
     }
 
     @BeforeEach
@@ -28,4 +29,5 @@ public class SeleniumTest extends ReportedTest {
             driver.quit();
         }
     }
+
 }

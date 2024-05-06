@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.example.annotations.reporting.TestStep;
 import org.example.selenium.strategies.SelectionStrategy;
 import org.example.selenium.strategies.ValidationStrategy;
+import org.example.selenium.strategies.impl.ValidationStrategies;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -46,6 +47,14 @@ public abstract class Page<T extends Page<T>> extends LoadableComponent<T> {
         this.parent = parent;
     }
 
+    public abstract void load();
+    public abstract void isLoaded();
+
+    public T navigate() {
+        load();
+        return (T) this;
+    }
+
     @TestStep(value = "The user enters the given text on the web element", reportArguments = true)
     public T type(WebElement element, String text) {
         element.sendKeys(text);
@@ -72,55 +81,52 @@ public abstract class Page<T extends Page<T>> extends LoadableComponent<T> {
 
     @TestStep(value = "The user validates the text equals the given string", reportArguments = true)
     public T validateTextEquals(String text) {
-        validate(null, ValidationStrategy.textEquals(text));
+        validate(null, ValidationStrategies.textEquals(text));
         return (T) this;
     }
 
     @TestStep(value = "The user validates the text contains the given string", reportArguments = true)
     public T validateTextContains(String text) {
-        validate(null, ValidationStrategy.textContains(text));
+        validate(null, ValidationStrategies.textContains(text));
         return (T) this;
     }
 
     @TestStep(value = "The user validates the element is visible", reportArguments = true)
     public T validateVisible(WebElement element) {
-        validate(element, ValidationStrategy.elementVisible());
+        validate(element, ValidationStrategies.elementVisible());
         return (T) this;
     }
 
     @TestStep(value = "The user validates the element is invisible", reportArguments = true)
     public T validateInvisible(WebElement element) {
-        validate(element, ValidationStrategy.elementInvisible());
+        validate(element, ValidationStrategies.elementInvisible());
         return (T) this;
     }
 
     @TestStep(value = "The user validates the title equals the given string", reportArguments = true)
     public T validateTitleEquals(String title) {
-        validate(null, ValidationStrategy.titleEquals(title));
+        validate(null, ValidationStrategies.titleEquals(title));
         return (T) this;
     }
 
     @TestStep(value = "The user validates the title contains the given string", reportArguments = true)
     public T validateTitleContains(String title) {
-        validate(null, ValidationStrategy.titleContains(title));
+        validate(null, ValidationStrategies.titleContains(title));
         return (T) this;
     }
 
     @TestStep(value = "The user validates the url equals the given string", reportArguments = true)
     public T validateUrlEquals(String url) {
-        validate(null, ValidationStrategy.urlEquals(url));
+        validate(null, ValidationStrategies.urlEquals(url));
         return (T) this;
     }
 
     @TestStep(value = "The user validates the url contains the given string", reportArguments = true)
     public T validateUrlContains(String url) {
-        validate(null, ValidationStrategy.urlContains(url));
+        validate(null, ValidationStrategies.urlContains(url));
         return (T) this;
     }
 
-    protected abstract void load();
-
-    protected abstract void isLoaded();
 
     protected WebDriver getDriver() {
         return driver;

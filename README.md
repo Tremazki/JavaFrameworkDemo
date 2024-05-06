@@ -12,19 +12,18 @@ Some system properties must be set if you plan on using Selenium WebDriver, thes
 - Grid (URL if you're connecting to a Grid instance)
   - e.g. `-Dgrid=http//localhost:4444`
 - Remote (Boolean for if you're connecting to a remote instance i.e. Grid)
-    - e.g. `-Dremote=true`
+  - e.g. `-Dremote=true`
+- Reporter (Defaults to ExtentReport)
+  - e.g. `-Dreporter=extent`
+  - Available options: `extent`, `disabled`
+- Environment (Must be set)
+  - Locates an associated properties file under the `environment` folder under the test resources
+  - e.g. `-Denvironment=default`
 
 e.g. 
 ```
-test -Pjunit-selenium -Dremote=false -Dbrowser=edge
+test -Dremote=false -Dbrowser=edge -Dreporter=extent -Dcapabilities=default -Denvironment=default
 ```
-
-## Limitations
-
-In order for the reports to automatically and accurately log the steps and pass/fail status, methods denoted by @TestStep 
-must not be called within other @TestStep methods. 
-
-Please see the example below for how we can organize our methods to avoid this.
 
 ### Incorrect:
 ```Java

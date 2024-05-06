@@ -10,12 +10,12 @@ public class AutomationExerciseCheckoutPage extends Page<AutomationExerciseCheck
     }
 
     @Override
-    protected void load() {
+    public void load() {
         driver.get("https://www.automationexercise.com/checkout");
     }
 
     @Override
-    protected void isLoaded() {
+    public void isLoaded() {
         assert driver.getTitle().contains("Checkout") : "Failed to assert the user is on the checkout page";
     }
 }

@@ -2,17 +2,17 @@ package org.example.reporting;
 
 import dorkbox.annotation.AnnotationDefaults;
 import dorkbox.annotation.AnnotationDetector;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.example.IFactory;
 import org.example.ISupplier;
-import org.example.reporting.IReporter;
 import org.example.annotations.ReporterFactory;
 
 import java.lang.annotation.ElementType;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * In the event that we have to utilize a different reporting engine for the client, we can
@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ReporterFactorySupplier implements ISupplier<IFactory<? extends IReporter, ?>> {
 
-    private static final Logger logger = LogManager.getLogger();
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
     private static Map<String, IFactory<? extends IReporter, String>> registry;
 

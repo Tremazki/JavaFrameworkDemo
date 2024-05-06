@@ -29,12 +29,12 @@ public class GoogleHomePage extends Page<GoogleHomePage> {
     }
 
     @Override
-    protected void load() {
+    public void load() {
         driver.get("https://www.google.com");
     }
 
     @Override
-    protected void isLoaded() {
+    public void isLoaded() {
         assert driver.getTitle().contains("Google");
     }
 
